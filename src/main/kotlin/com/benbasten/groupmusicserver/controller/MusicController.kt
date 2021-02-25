@@ -8,6 +8,6 @@ class MusicController {
 
     @GetMapping("/hello")
     fun hello(): String {
-        return "Hello World"
+        return "Hello World!"
     }
 }
