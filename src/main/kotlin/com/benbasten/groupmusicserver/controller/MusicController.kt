@@ -37,7 +37,7 @@ class MusicController(private val musicService: MusicService, private val roomSe
     @GetMapping("/room/now-playing")
     fun getRoomNowPlaying(): ResponseEntity<StreamingResponseBody> {
         val fileName = "the-nights.mp3"
-        val file: File = ResourceUtils.getFile("classpath:static/$fileName")
+        val file: File = ResourceUtils.getFile("classpath:music/$fileName")
         val responseBody = StreamingResponseBody { outputStream: OutputStream -> Files.copy(file.toPath(), outputStream) }
         return ResponseEntity.ok()
             .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=Downloaded_$fileName")

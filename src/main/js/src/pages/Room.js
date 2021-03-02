@@ -46,19 +46,25 @@ function Room(props) {
 
     return (
         <div className="room">
-          <Header />
-          <div className="room-info">
-              <h2>Room {props.match.params.roomId}</h2>
-              <p>Share this link with your friends to join!</p>
-              <p>{window.location.href}</p>
-          </div>
-          <div className="media-controls">
-              <audio controls src="/api/gms/room/now-playing">
-                  Your browser does not support the <code>audio</code> element.
-              </audio>
-          </div>
-          <MusicList music={musicList} />
-          <MusicList music={queue} />
+            <Header />
+            <div className="room-info">
+                <h2>Room {props.match.params.roomId}</h2>
+                <p>Share this link with your friends to join!</p>
+                <p>{window.location.href}</p>
+            </div>
+            <div className="media-controls">
+                <audio controls src="/api/gms/room/now-playing">
+                    Your browser does not support the <code>audio</code> element.
+                </audio>
+            </div>
+            <div>
+                <h3>Queue</h3>
+                <MusicList music={queue} />
+            </div>
+            <div>
+                <h3>Available Music</h3>
+                <MusicList music={musicList} />
+            </div>
         </div>
     );
 }
