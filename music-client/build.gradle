@@ -15,6 +15,7 @@ javafx {
 
 mainClassName = 'com.benbasten.groupmusicserver.GroupMusicClientApplication'
 dependencies {
+    implementation "com.sun.jersey:jersey-client:1.8"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 compileKotlin {
