@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Lobby from '../pages/Lobby';
-import Room from '../pages/Room';
-import Join from '../pages/Join';
-import NotFound from '../pages/NotFound';
-import '../scss/main.scss';
+import Lobby from './pages/Lobby';
+import Room from './pages/Room';
+import Join from './pages/Join';
+import NotFound from './pages/NotFound';
+import './scss/main.scss';
 
 function Router() {
     return (

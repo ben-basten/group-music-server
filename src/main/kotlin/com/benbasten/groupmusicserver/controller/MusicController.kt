@@ -1,5 +1,6 @@
 package com.benbasten.groupmusicserver.controller
 
+import com.benbasten.groupmusicserver.service.MusicService
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -12,19 +13,20 @@ import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBo
 import java.io.File
 import java.io.OutputStream
 import java.nio.file.Files
+import java.time.LocalDateTime
 
 @RestController
 @RequestMapping("/api/gms")
-class MusicController {
+class MusicController(private val musicService: MusicService) {
 
     @GetMapping("/hello")
     fun hello(): String {
-        return "Hello World!"
+        return "${musicService.hello()}, today is ${LocalDateTime.now()}"
     }
 
     @GetMapping("/tracks")
     fun getMusicListings(): List<String> {
-        return listOf("The Nights", "Heaven", "Waiting for Love")
+        return musicService.getFileListings()
     }
 
     @GetMapping("/current/track")
