@@ -1,12 +1,14 @@
 package com.benbasten.groupmusicserver.controller
 
 import com.benbasten.groupmusicserver.service.MusicService
+import com.benbasten.groupmusicserver.service.RoomService
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.util.MimeType
 import org.springframework.util.ResourceUtils
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody
@@ -15,9 +17,12 @@ import java.io.OutputStream
 import java.nio.file.Files
 import java.time.LocalDateTime
 
+
+
+
 @RestController
 @RequestMapping("/api/gms")
-class MusicController(private val musicService: MusicService) {
+class MusicController(private val musicService: MusicService, private val roomService: RoomService) {
 
     @GetMapping("/hello")
     fun hello(): String {
@@ -29,8 +34,8 @@ class MusicController(private val musicService: MusicService) {
         return musicService.getFileListings()
     }
 
-    @GetMapping("/current/track")
-    fun getCurrentTrack(): ResponseEntity<StreamingResponseBody> {
+    @GetMapping("/room/now-playing")
+    fun getRoomNowPlaying(): ResponseEntity<StreamingResponseBody> {
         val fileName = "the-nights.mp3"
         val file: File = ResourceUtils.getFile("classpath:static/$fileName")
         val responseBody = StreamingResponseBody { outputStream: OutputStream -> Files.copy(file.toPath(), outputStream) }
@@ -38,5 +43,10 @@ class MusicController(private val musicService: MusicService) {
             .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=Downloaded_$fileName")
             .contentType(MediaType.asMediaType(MimeType("audio", "mpeg")))
             .body(responseBody)
+    }
+
+    @GetMapping("/room/queue")
+    fun getRoomQueue(@RequestHeader("roomId") roomId: Int): List<String> {
+        return roomService.getQueueForRoom(roomId)
     }
 }
