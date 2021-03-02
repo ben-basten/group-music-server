@@ -1,4 +1,13 @@
-.room-info, .media-controls {
+.room-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    @include for-narrow-displays {
+        grid-template-columns: 1fr;
+    }
+}
+
+.room-info {
     margin: 30px auto 0 auto;
     width: 300px;
     text-align: center;
@@ -7,7 +16,7 @@
         margin: 0;
         font-size: 3rem;
     }
-    
+
     p {
         font-style: italic;
         margin: 0;

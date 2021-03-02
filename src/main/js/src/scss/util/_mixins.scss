@@ -7,6 +7,10 @@
     }
 }
 
+@mixin for-narrow-displays {
+  @media (max-width: 599px) { @content; }
+}
+
 // url($font-file+'.eot?#iefix') format('embedded-opentype'),
 // url($font-file+'.woff') format('woff'),
 // url($font-file+'.svg#aller') format('svg');

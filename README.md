@@ -12,10 +12,6 @@ _Frontend - React_
 
 * Navigate into the src/js folder and run the command `npm install`
 * `npm start` will run the UI frontend, available at [localhost:3000](http://localhost:3000).
-* If data such as the music listings aren't appearing in the UI and the console has the error `Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at http://localhost:8080/api/gms/tracks. (Reason: CORS header ‘Access-Control-Allow-Origin’ missing).`:
-    * For your browser of choice, get a CORS changer Add-on/Extension. One that I've found works well is "Moesif CORS".
-    * Enable Moesif CORS to allow cross-domain requests.
-    * Refresh the page. You're all set!
 
 _Backend - Spring Boot_
 
