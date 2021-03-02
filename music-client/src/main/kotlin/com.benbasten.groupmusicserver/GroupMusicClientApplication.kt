@@ -8,35 +8,15 @@ import javafx.scene.Scene
 import javafx.scene.control.Label
 import javafx.scene.layout.StackPane
 import javafx.stage.Stage
-import java.net.URI
-import java.net.http.HttpClient
-import java.net.http.HttpRequest
-import java.net.http.HttpResponse
-import java.net.http.HttpResponse.BodyHandlers
-
-
-
-
-
-
 
 
 class GroupMusicClientApplication : Application() {
     val APP_NAME = "Listening Party"
-    var client: HttpClient? = null
 
     override fun start(stage: Stage) {
-        val javaVersion = System.getProperty("java.version")
-        val javafxVersion = System.getProperty("javafx.version")
-
         var output: String? = null
-        var response: HttpResponse<String>? = null
+
         try {
-//            var request = HttpRequest.newBuilder(
-//                URI.create("https://postman-echo.com/get"))
-//                .GET()
-//                .build()
-//            response = client?.send(request, BodyHandlers.ofString())
             val client: Client = Client.create()
 
             val webResource: WebResource = client
