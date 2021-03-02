@@ -6,7 +6,14 @@ This is my senior project at NMU fo the CS480 course.
 
 ---
 
-**Getting Started**
+## Getting Started
+
+_Frontend - React_
 
 * Navigate into the src/js folder and run the command `npm install`
-* `npm start` will run the UI frontend, available at localhost:3000.
+* `npm start` will run the UI frontend, available at [localhost:3000](http://localhost:3000).
+
+_Backend - Spring Boot_
+
+* In the root project directory, run the command `gradle bootRun`
+* The server will be listening on port 8080. Test that it is working by navigating to [localhost:8080/api/gms/hello](http://localhost:8080/api/gms/hello).
