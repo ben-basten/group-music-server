@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component
 
 import org.springframework.core.io.support.ResourcePatternResolver
 import java.io.File
+import java.io.FileNotFoundException
 
 
 @Component
@@ -15,12 +16,13 @@ class MusicService(private val resourcePatternResolver: ResourcePatternResolver)
 
     fun hello() = "hello"
 
-    fun getFileListings(): List<String> {
+    fun getTrackListings(): List<String> {
         return musicList.map {it.filename!!}
     }
 
-    fun getCurrentSong(): File {
-        return musicList[0].file
+    fun getTrack(id: Int): File {
+        if(id < 0 || id > musicList.size) throw FileNotFoundException()
+        return musicList[id].file
     }
 
     private fun getMusicList(): Array<Resource> {

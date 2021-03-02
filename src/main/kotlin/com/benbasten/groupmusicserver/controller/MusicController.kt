@@ -28,12 +28,12 @@ class MusicController(private val musicService: MusicService, private val roomSe
 
     @GetMapping("/tracks")
     fun getMusicListings(): List<String> {
-        return musicService.getFileListings()
+        return musicService.getTrackListings()
     }
 
     @GetMapping("/room/now-playing")
-    fun getRoomNowPlaying(): ResponseEntity<StreamingResponseBody> {
-        val file: File = musicService.getCurrentSong()
+    fun getRoomNowPlaying(@RequestHeader("roomId") roomId: Int): ResponseEntity<StreamingResponseBody> {
+        val file: File = roomService.getCurrentTrackForRoom(roomId)
         val responseBody = StreamingResponseBody { outputStream: OutputStream -> Files.copy(file.toPath(), outputStream) }
         return ResponseEntity.ok()
             .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=${file.name}")
