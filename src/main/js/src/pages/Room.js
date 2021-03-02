@@ -19,12 +19,14 @@ function Room(props) {
     <div className="room">
       <Header />
       <div className="room-info">
-        <h2>Room {props.match.params.roomId}</h2>
-        <p>Share this link with your friends to join!</p>
-        <p>{window.location.href}</p>
+          <h2>Room {props.match.params.roomId}</h2>
+          <p>Share this link with your friends to join!</p>
+          <p>{window.location.href}</p>
       </div>
       <div className="media-controls">
-        <input type="button" value={isPlaying ? "Pause" : "Play"} onClick={playPause} />
+          <audio controls src="http://localhost:8080/api/gms/current/track">
+              Your browser does not support the <code>audio</code> element.
+          </audio>
       </div>
     </div>
   );
