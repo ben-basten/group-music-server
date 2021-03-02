@@ -6,7 +6,6 @@ import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.util.MimeType
-import org.springframework.util.ResourceUtils
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RequestMapping
@@ -16,8 +15,6 @@ import java.io.File
 import java.io.OutputStream
 import java.nio.file.Files
 import java.time.LocalDateTime
-
-
 
 
 @RestController
@@ -36,11 +33,10 @@ class MusicController(private val musicService: MusicService, private val roomSe
 
     @GetMapping("/room/now-playing")
     fun getRoomNowPlaying(): ResponseEntity<StreamingResponseBody> {
-        val fileName = "the-nights.mp3"
-        val file: File = ResourceUtils.getFile("classpath:music/$fileName")
+        val file: File = musicService.getCurrentSong()
         val responseBody = StreamingResponseBody { outputStream: OutputStream -> Files.copy(file.toPath(), outputStream) }
         return ResponseEntity.ok()
-            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=Downloaded_$fileName")
+            .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=${file.name}")
             .contentType(MediaType.asMediaType(MimeType("audio", "mpeg")))
             .body(responseBody)
     }
