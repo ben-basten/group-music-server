@@ -4,8 +4,6 @@ A static music file server with listening rooms for multiple clients to join and
 
 This is my senior project at NMU fo the CS480 course.
 
----
-
 ## Getting Started
 
 _Frontend - React_
