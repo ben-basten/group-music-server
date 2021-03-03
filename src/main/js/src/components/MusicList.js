@@ -2,8 +2,8 @@ function MusicList({music}) {
     return (
         <div className="music-list">
             <ul>
-            {music ? music.map((name, index) => (
-                <li key={index}>{name}</li>
+            {music ? music.map(track => (
+                <li key={track.id}>{track.prettyName}</li>
             )) : null}
             </ul>
         </div>

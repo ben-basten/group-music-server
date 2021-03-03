@@ -1,5 +1,6 @@
 package com.benbasten.groupmusicserver.controller
 
+import com.benbasten.groupmusicserver.model.Track
 import com.benbasten.groupmusicserver.service.MusicService
 import com.benbasten.groupmusicserver.service.RoomService
 import org.springframework.http.HttpHeaders
@@ -24,7 +25,7 @@ class MusicController(private val musicService: MusicService, private val roomSe
     }
 
     @GetMapping("/tracks")
-    fun getMusicListings(): List<String> {
+    fun getMusicListings(): List<Track> {
         return musicService.getTrackListings()
     }
 

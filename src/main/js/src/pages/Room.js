@@ -13,7 +13,6 @@ function Room(props) {
     const [queue, setQueue] = useState([]);
 
     const getMusicListings = () => {
-        console.log("called getMusicListings");
         fetch('/api/gms/tracks', {
             method: 'GET'
         })
@@ -39,9 +38,8 @@ function Room(props) {
     }
 
     useEffect(() => {
-        console.log("called useEffect");
         getMusicListings();
-        getQueue();
+        // getQueue(); //TODO: fix queue call
     }, [])
 
     return (

@@ -1,4 +1,9 @@
 package com.benbasten.groupmusicserver.model
 
-class Track {
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import org.springframework.core.io.Resource
+
+@JsonIgnoreProperties(value = ["resource"])
+class Track(var resource: Resource, val id: Int) {
+    val prettyName: String = resource.filename!!.substringBefore('.')
 }
