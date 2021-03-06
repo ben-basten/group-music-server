@@ -30,7 +30,7 @@ class MusicController(private val musicService: MusicService, private val roomSe
     }
 
     @GetMapping("/room/now-playing")
-    fun getRoomNowPlaying(@RequestHeader("roomId") roomId: Int): ResponseEntity<StreamingResponseBody> {
+    fun getRoomNowPlaying(@RequestParam("roomId") roomId: Int): ResponseEntity<StreamingResponseBody> {
         val file: File = roomService.getCurrentTrackForRoom(roomId)
         val responseBody = StreamingResponseBody { outputStream: OutputStream -> Files.copy(file.toPath(), outputStream) }
         return ResponseEntity.ok()
