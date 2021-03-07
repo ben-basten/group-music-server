@@ -10,4 +10,19 @@
     overflow: scroll;
     overflow-x: hidden;
   }
+
+  img {
+    padding: 0 10px 0 10px;
+    width: 2.5rem;
+    border-radius: 10px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .list-group-item {
+    display: flex;
+    justify-content: space-between;
+  }
 }

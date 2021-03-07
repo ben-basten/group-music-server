@@ -13,12 +13,11 @@ class RoomService(private val musicService: MusicService) {
 
     fun createRoom(): Int {
         if(rooms.size > 5) throw TooManyRoomsException()
-        val newRoom = Room()
         var id: Int
         do {
-            id = newRoom.generateRoomId()
+            id = Room.generateRoomId()
         } while(rooms.containsKey(id)) // guarantees no duplicates
-        rooms[id] = newRoom
+        rooms[id] = Room(id)
         return id
     }
 

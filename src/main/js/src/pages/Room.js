@@ -55,7 +55,7 @@ function Room(props) {
                         Your browser does not support the <code>audio</code> element.
                     </audio>
                 </div>
-                <MusicList name={"Available Music"} music={musicList} />
+                <MusicList name={"Available Music"} music={musicList} roomId={props.match.params.roomId} />
             </div>
         </div>
     );
