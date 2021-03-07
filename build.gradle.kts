@@ -26,10 +26,8 @@ dependencies {
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
 	//	Spock testing
-	testImplementation("org.springframework.boot:spring-boot-starter-test") {
-		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
-	}
-	testImplementation("org.spockframework:spock-core:$spockVersion")
+	testImplementation("org.springframework.boot:spring-boot-starter-test") { exclude(group = "org.junit.vintage", module = "junit-vintage-engine") }
+	testImplementation("org.spockframework:spock-core:$spockVersion") { exclude(group = "org.codehaus.groovy") }
 	testImplementation("org.spockframework:spock-spring:$spockVersion")
 }
 
@@ -38,8 +36,4 @@ tasks.withType<KotlinCompile> {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
 		jvmTarget = "11"
 	}
-}
-
-tasks.withType<Test> {
-	useJUnitPlatform()
 }
