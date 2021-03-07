@@ -5,7 +5,7 @@ import java.io.File
 import kotlin.collections.ArrayDeque
 
 @JsonIgnoreProperties(value = ["currentTrack"])
-class Room(private val roomId: Int) {
+class Room(val roomId: Int) {
     private var clientCount = 1
     private var queue: ArrayDeque<Track> = ArrayDeque()
 

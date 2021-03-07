@@ -12,14 +12,14 @@ class RoomService(private val musicService: MusicService) {
 
     var rooms: HashMap<Int, Room> = HashMap()
 
-    fun createRoom(): Int {
+    fun createRoom(): Room {
         if(rooms.size > 5) throw TooManyRoomsException()
         var id: Int
         do {
             id = Room.generateRoomId()
         } while(rooms.containsKey(id)) // guarantees no duplicates
         rooms[id] = Room(id)
-        return id
+        return rooms[id]!!
     }
 
     fun getQueueForRoom(roomId: Int): List<Track> {

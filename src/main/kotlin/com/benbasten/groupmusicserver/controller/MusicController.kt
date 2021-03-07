@@ -51,7 +51,7 @@ class MusicController(private val musicService: MusicService, private val roomSe
     }
 
     @PostMapping("/create")
-    fun createRoom(): Int {
+    fun createRoom(): Room {
         return roomService.createRoom()
     }
 
