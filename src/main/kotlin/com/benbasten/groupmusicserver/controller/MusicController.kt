@@ -1,5 +1,6 @@
 package com.benbasten.groupmusicserver.controller
 
+import com.benbasten.groupmusicserver.model.Room
 import com.benbasten.groupmusicserver.model.Track
 import com.benbasten.groupmusicserver.service.MusicService
 import com.benbasten.groupmusicserver.service.RoomService
@@ -52,5 +53,10 @@ class MusicController(private val musicService: MusicService, private val roomSe
     @PostMapping("/create")
     fun createRoom(): Int {
         return roomService.createRoom()
+    }
+
+    @PostMapping("/join/{roomId}")
+    fun joinRoom(@PathVariable("roomId") roomId: Int): Room {
+        return roomService.joinRoom(roomId)
     }
 }

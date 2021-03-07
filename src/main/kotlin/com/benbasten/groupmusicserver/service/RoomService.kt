@@ -37,4 +37,9 @@ class RoomService(private val musicService: MusicService) {
         rooms[roomId]?.addToQueue(musicService.getTrack(trackId)!!) ?: throw RoomNotFoundException()
         return true
     }
+
+    fun joinRoom(roomId: Int): Room {
+        rooms[roomId]?.addUserToRoom() ?: throw RoomNotFoundException()
+        return rooms[roomId]!!
+    }
 }
