@@ -21,6 +21,10 @@ class Room(val roomId: Int) {
 
     fun getQueue(): List<Track> = queue.toList()
 
+    fun popQueue() {
+        if(queue.isNotEmpty()) queue.removeFirst()
+    }
+
     companion object {
         fun generateRoomId(): Int {
             return (Math.random() * 9000).toInt() + 1000

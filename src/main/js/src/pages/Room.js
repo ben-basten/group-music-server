@@ -26,7 +26,7 @@ function Room(props) {
     const attemptJoin = () => {
         API.joinRoom(props.match.params.roomId)
             .then(response => {
-                if(!response.roomId) {
+                if(!response || !response.roomId) {
                     // room doesn't exist, go to home page
                     props.history.replace({
                         pathname: '/',

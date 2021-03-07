@@ -42,4 +42,9 @@ class RoomService(private val musicService: MusicService) {
         rooms[roomId]?.addUserToRoom() ?: throw RoomNotFoundException()
         return rooms[roomId]!!
     }
+
+    fun nextTrack(roomId: Int): List<Track> {
+        rooms[roomId]?.popQueue() ?: throw RoomNotFoundException()
+        return rooms[roomId]!!.getQueue()
+    }
 }

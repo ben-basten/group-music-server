@@ -50,6 +50,11 @@ class MusicController(private val musicService: MusicService, private val roomSe
         return roomService.addToQueue(roomId, trackId)
     }
 
+    @PostMapping("/room/next-track")
+    fun nextTrack(@RequestHeader("roomId") roomId: Int): List<Track> {
+        return roomService.nextTrack(roomId)
+    }
+
     @PostMapping("/create")
     fun createRoom(): Room {
         return roomService.createRoom()
