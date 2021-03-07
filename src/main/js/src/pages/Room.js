@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import {withRouter} from 'react-router-dom';
 import Header from '../components/Header';
-import MusicList from '../components/MusicList';
+import AvailableMusic from '../components/AvailableMusic';
+import NowPlaying from '../components/NowPlaying';
+import Queue from '../components/Queue';
+import API from "../utils/API";
 
 function Room(props) {
-  // props.history.push({
-  //   pathname: '/',
-  //   state: { error: `Invalid Room ID: ${props.match.params.roomId}` }
-  // });
+    window.history.replaceState(null, '');
 
     const [musicList, setMusicList] = useState([]);
     const [queue, setQueue] = useState([]);
@@ -20,6 +20,21 @@ function Room(props) {
             .then(response => setMusicList(response))
             .catch(error => {
                 console.error("Something went wrong fetching the music listings.");
+            });
+    }
+
+    const attemptJoin = () => {
+        API.joinRoom(props.match.params.roomId)
+            .then(response => {
+                if(!response.roomId) {
+                    // room doesn't exist, go to home page
+                    props.history.replace({
+                        pathname: '/',
+                        state: { error: `Invalid Room ID: ${props.match.params.roomId}` }
+                    });
+                } else {
+                    setQueue(response.queue)
+                }
             });
     }
 
@@ -38,24 +53,29 @@ function Room(props) {
     }
 
     useEffect(() => {
+        if(props.location.state && props.location.state.room) {
+            // the user came here from the join page
+            setQueue(props.location.state.room.queue);
+        } else {
+            // the user navigated directly to the room page in the browser
+            attemptJoin();
+        }
         getMusicListings();
-        // getQueue(); //TODO: fix queue call
+        // getQueue();
     }, [])
 
     return (
         <div className="room">
             <Header />
             <div className="room-content">
-                <MusicList name={"Queue"} music={queue} />
-                <div className="room-info">
+                <Queue music={queue} />
+                <div className="room-details">
                     <h2>Room {props.match.params.roomId}</h2>
-                    <p>Share this link with your friends to join!</p>
-                    <p>{window.location.href}</p>
-                    <audio controls src={`/api/gms/room/now-playing?roomId=${props.match.params.roomId}`}>
-                        Your browser does not support the <code>audio</code> element.
-                    </audio>
+                    <p className="info">Share this link with your friends to join!</p>
+                    <p className="info">{window.location.href}</p>
+                    <NowPlaying track={queue[0]} roomId={props.match.params.roomId} />
                 </div>
-                <MusicList name={"Available Music"} music={musicList} />
+                <AvailableMusic music={musicList} roomId={props.match.params.roomId} />
             </div>
         </div>
     );

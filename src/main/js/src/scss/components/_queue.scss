@@ -1,0 +1,24 @@
+.queue{
+  .tip, img {
+    margin-top: auto;
+    margin-bottom: auto;
+    display: none;
+  }
+
+  .list-group-item {
+    // highlights first item in the queue green unless it is the empty list message
+    &:first-child:not(.message) {
+      background-color: lightgreen;
+    }
+
+    // only the first list element gets the play icon
+    &:first-child img {
+      display: block;
+    }
+
+    // "up next" only gets shown on the 2nd element in the list
+    &:nth-child(2) .tip {
+      display: block;
+    }
+  }
+}

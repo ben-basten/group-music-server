@@ -20,8 +20,8 @@ class MusicService(private val resourcePatternResolver: ResourcePatternResolver)
         return trackList.map {it.value}
     }
 
-    fun getTrack(id: Int): File {
-        return trackList[id]?.resource?.file ?: throw FileNotFoundException()
+    fun getTrack(id: Int): Track? {
+        return trackList[id]
     }
 
     fun hasTrack(id: Int): Boolean {
@@ -32,7 +32,7 @@ class MusicService(private val resourcePatternResolver: ResourcePatternResolver)
         var list = resourcePatternResolver.getResources("classpath:music/*/*.mp3")
         list += resourcePatternResolver.getResources("classpath:music/*.mp3")
         val newTrackList: HashMap<Int, Track> = HashMap()
-        list.mapIndexed {index, resource -> newTrackList.put(index, Track(resource, index))}
+        list.mapIndexed {index, resource -> newTrackList.put(index, Track(index, resource))}
         return newTrackList
     }
 }

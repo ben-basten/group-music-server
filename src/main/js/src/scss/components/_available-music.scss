@@ -1,0 +1,29 @@
+.music-list {
+  height: 90vh;
+  margin: 30px;
+
+  h3 {
+    text-align: center;
+  }
+
+  ul {
+    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  img {
+    padding: 0 10px 0 10px;
+    width: 2.5rem;
+    border-radius: 10px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .list-group-item {
+    display: flex;
+    justify-content: space-between;
+  }
+}

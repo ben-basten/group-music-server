@@ -1,4 +1,8 @@
 body {
     font-family: dubai, sans-serif;
     overflow: hidden;
+
+    @include for-narrow-displays {
+        overflow: scroll;
+    }
 }

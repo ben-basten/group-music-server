@@ -1,5 +1,6 @@
 package com.benbasten.groupmusicserver.controller
 
+import com.benbasten.groupmusicserver.model.Room
 import com.benbasten.groupmusicserver.model.Track
 import com.benbasten.groupmusicserver.service.MusicService
 import com.benbasten.groupmusicserver.service.RoomService
@@ -40,7 +41,7 @@ class MusicController(private val musicService: MusicService, private val roomSe
     }
 
     @GetMapping("/room/queue")
-    fun getRoomQueue(@RequestHeader("roomId") roomId: Int): List<String> {
+    fun getRoomQueue(@RequestHeader("roomId") roomId: Int): List<Track> {
         return roomService.getQueueForRoom(roomId)
     }
 
@@ -50,7 +51,12 @@ class MusicController(private val musicService: MusicService, private val roomSe
     }
 
     @PostMapping("/create")
-    fun createRoom(): Int {
+    fun createRoom(): Room {
         return roomService.createRoom()
+    }
+
+    @PostMapping("/join")
+    fun joinRoom(@RequestBody roomId: Int): Room {
+        return roomService.joinRoom(roomId)
     }
 }

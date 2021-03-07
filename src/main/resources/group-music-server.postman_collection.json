@@ -6,6 +6,44 @@
 	},
 	"item": [
 		{
+			"name": "Add to Queue",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "roomId",
+						"value": "8070",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "0",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/gms/room/queue/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"gms",
+						"room",
+						"queue",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Create Room",
 			"request": {
 				"method": "POST",
@@ -21,6 +59,84 @@
 						"api",
 						"gms",
 						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Join Room",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "1234"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/gms/join",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"gms",
+						"join"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Hello",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/gms/hello",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"gms",
+						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Track Listings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/gms/tracks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"gms",
+						"tracks"
 					]
 				}
 			},
@@ -63,48 +179,18 @@
 			"response": []
 		},
 		{
-			"name": "All Track Listings",
+			"name": "Get Queue",
 			"request": {
 				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/gms/tracks",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"gms",
-						"tracks"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Add to Queue",
-			"request": {
-				"method": "POST",
 				"header": [
 					{
 						"key": "roomId",
-						"value": "1234",
+						"value": "7313",
 						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "0",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "http://localhost:3000/api/gms/room/queue/add",
+					"raw": "http://localhost:3000/api/gms/room/queue",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -114,8 +200,7 @@
 						"api",
 						"gms",
 						"room",
-						"queue",
-						"add"
+						"queue"
 					]
 				}
 			},
