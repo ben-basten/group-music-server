@@ -7,7 +7,7 @@
     }
 }
 
-.room-info {
+.room-details {
     margin: 30px auto 0 auto;
     width: 300px;
     text-align: center;
@@ -17,8 +17,20 @@
         font-size: 3rem;
     }
 
-    p {
+    p.info {
         font-style: italic;
         margin: 0;
+    }
+
+    .now-playing {
+        margin-top: 45px;
+
+        h3, p {
+            margin: 0;
+        }
+
+        audio {
+            margin-top: 15px;
+        }
     }
 }

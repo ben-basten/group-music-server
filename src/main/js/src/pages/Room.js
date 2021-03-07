@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import {withRouter} from 'react-router-dom';
 import Header from '../components/Header';
 import MusicList from '../components/MusicList';
+import NowPlaying from "../components/NowPlaying";
 
 function Room(props) {
   // props.history.push({
@@ -11,6 +12,7 @@ function Room(props) {
 
     const [musicList, setMusicList] = useState([]);
     const [queue, setQueue] = useState([]);
+    const [currentTrack, setCurrentTrack] = useState([]);
 
     const getMusicListings = () => {
         fetch('/api/gms/tracks', {
@@ -39,7 +41,7 @@ function Room(props) {
 
     useEffect(() => {
         getMusicListings();
-        // getQueue(); //TODO: fix queue call
+        // getQueue();
     }, [])
 
     return (
@@ -47,13 +49,11 @@ function Room(props) {
             <Header />
             <div className="room-content">
                 <MusicList name={"Queue"} music={queue} />
-                <div className="room-info">
+                <div className="room-details">
                     <h2>Room {props.match.params.roomId}</h2>
-                    <p>Share this link with your friends to join!</p>
-                    <p>{window.location.href}</p>
-                    <audio controls src={`/api/gms/room/now-playing?roomId=${props.match.params.roomId}`}>
-                        Your browser does not support the <code>audio</code> element.
-                    </audio>
+                    <p className="info">Share this link with your friends to join!</p>
+                    <p className="info">{window.location.href}</p>
+                    <NowPlaying track={currentTrack} roomId={props.match.params.roomId} />
                 </div>
                 <MusicList name={"Available Music"} music={musicList} roomId={props.match.params.roomId} />
             </div>

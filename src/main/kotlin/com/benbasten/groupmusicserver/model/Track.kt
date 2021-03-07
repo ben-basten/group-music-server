@@ -5,7 +5,7 @@ import com.mpatric.mp3agic.Mp3File
 import org.springframework.core.io.Resource
 
 @JsonIgnoreProperties(value = ["resource"])
-class Track(var resource: Resource, val id: Int) {
+class Track(val id: Int, var resource: Resource) {
     private val mp3File: Mp3File = Mp3File(resource.file)
     val title: String = findTrackTitle()
     val artist: String = if(mp3File.hasId3v2Tag()) mp3File.id3v2Tag.albumArtist else "Unknown artist"
