@@ -1,6 +1,6 @@
 import QueueIcon from '../assets/icons/playlist.svg'
 
-function MusicList({name, music, roomId}) {
+function AvailableMusic({music, roomId}) {
 
     const addToQueue = (trackId) => {
         fetch('/api/gms/room/queue/add', {
@@ -20,7 +20,7 @@ function MusicList({name, music, roomId}) {
 
     return (
         <div className="music-list list-group">
-            <h3>{name}</h3>
+            <h3>Available Music</h3>
             <ul>
             {music && music.length > 0 ? music.map(track => (
                 <li key={track.id} className="list-group-item">
@@ -30,10 +30,10 @@ function MusicList({name, music, roomId}) {
                     </div>
                     <img src={QueueIcon} alt="Add to queue" onClick={() => addToQueue(track.id)} />
                 </li>
-            )) : <li className={"list-group-item"}>Nothing to see here... yet!</li>}
+            )) : null}
             </ul>
         </div>
     );
 }
 
-export default MusicList;
+export default AvailableMusic;

@@ -20,8 +20,8 @@ class MusicService(private val resourcePatternResolver: ResourcePatternResolver)
         return trackList.map {it.value}
     }
 
-    fun getTrack(id: Int): File {
-        return trackList[id]?.resource?.file ?: throw FileNotFoundException()
+    fun getTrack(id: Int): Track? {
+        return trackList[id]
     }
 
     fun hasTrack(id: Int): Boolean {

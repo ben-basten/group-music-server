@@ -1,0 +1,6 @@
+.queue{
+  // highlights first item in the queue green unless it is the empty list message
+  .list-group-item:first-child:not(.message) {
+    background-color: lightgreen;
+  }
+}

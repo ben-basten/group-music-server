@@ -1,6 +1,4 @@
 function NowPlaying({track, roomId}) {
-    console.log(roomId)
-
     return (
         <div className="now-playing">
             <h3>{track.title ? track.title : "Queue is empty."}</h3>

@@ -40,7 +40,7 @@ class MusicController(private val musicService: MusicService, private val roomSe
     }
 
     @GetMapping("/room/queue")
-    fun getRoomQueue(@RequestHeader("roomId") roomId: Int): List<String> {
+    fun getRoomQueue(@RequestHeader("roomId") roomId: Int): List<Track> {
         return roomService.getQueueForRoom(roomId)
     }
 
