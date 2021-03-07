@@ -13,7 +13,6 @@ function Room(props) {
 
     const [musicList, setMusicList] = useState([]);
     const [queue, setQueue] = useState([]);
-    const [currentTrack, setCurrentTrack] = useState([]);
 
     const getMusicListings = () => {
         fetch('/api/gms/tracks', {
@@ -54,7 +53,7 @@ function Room(props) {
                     <h2>Room {props.match.params.roomId}</h2>
                     <p className="info">Share this link with your friends to join!</p>
                     <p className="info">{window.location.href}</p>
-                    <NowPlaying track={currentTrack} roomId={props.match.params.roomId} />
+                    <NowPlaying track={queue[0]} roomId={props.match.params.roomId} />
                 </div>
                 <AvailableMusic music={musicList} roomId={props.match.params.roomId} />
             </div>
