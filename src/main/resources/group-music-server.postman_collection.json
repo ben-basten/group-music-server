@@ -6,27 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "Create Room",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/gms/create",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"gms",
-						"create"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Add to Queue",
 			"request": {
 				"method": "POST",
@@ -65,6 +44,91 @@
 			"response": []
 		},
 		{
+			"name": "Create Room",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/gms/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"gms",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Join Room",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/gms/join/1234",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"gms",
+						"join",
+						"1234"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Hello",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/gms/hello",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"gms",
+						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Track Listings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/gms/tracks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"gms",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Now Playing",
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {
@@ -95,27 +159,6 @@
 							"key": "roomId",
 							"value": "1234"
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "All Track Listings",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/gms/tracks",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"gms",
-						"tracks"
 					]
 				}
 			},

@@ -55,8 +55,8 @@ class MusicController(private val musicService: MusicService, private val roomSe
         return roomService.createRoom()
     }
 
-    @PostMapping("/join/{roomId}")
-    fun joinRoom(@PathVariable("roomId") roomId: Int): Room {
+    @PostMapping("/join")
+    fun joinRoom(@RequestBody roomId: Int): Room {
         return roomService.joinRoom(roomId)
     }
 }

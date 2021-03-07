@@ -12,7 +12,6 @@ function AvailableMusic({music, roomId}) {
             body: JSON.stringify(trackId)
         })
             .then(response => response.json())
-            .then(response => console.log(response))
             .catch(error => {
                 console.error("Something went wrong while adding a song to the queue.");
             });
