@@ -18,12 +18,16 @@ repositories {
 
 dependencies {
 	val spockVersion = "1.3-groovy-2.5"
+	val mp3agicVersion = "0.9.1"
 	
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
+
+	// Reading mp3 metadata
+	implementation("com.mpatric:mp3agic:$mp3agicVersion")
 
 	//	Spock testing
 	testImplementation("org.springframework.boot:spring-boot-starter-test") { exclude(group = "org.junit.vintage", module = "junit-vintage-engine") }

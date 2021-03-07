@@ -18,3 +18,7 @@ _Backend - Spring Boot_
 * In the root project directory, run the command `gradle bootRun`
 * The server will be listening on port 8080. 
 * When the frontend is running, all requests to port 3000 will be proxied to port 8080. Test that everything is running by navigating to [localhost:3000/api/gms/hello](http://localhost:8080/api/gms/hello).
+
+_Adding music_
+
+Put .mp3 music files into `src/main/resources/music`. The music can be in folders up to 2 directories deep.
