@@ -1,6 +1,6 @@
 package com.benbasten.groupmusicserver.service
 
-import org.springframework.core.io.Resource
+import com.benbasten.groupmusicserver.model.Track
 import org.springframework.stereotype.Component
 
 import org.springframework.core.io.support.ResourcePatternResolver
@@ -12,22 +12,27 @@ import java.io.FileNotFoundException
 class MusicService(private val resourcePatternResolver: ResourcePatternResolver) {
 
     // music list only gets generated at first runtime
-    private val musicList: Array<Resource> = getMusicList()
+    private val trackList: HashMap<Int, Track> = makeTrackList()
 
     fun hello() = "hello"
 
-    fun getTrackListings(): List<String> {
-        return musicList.map {it.filename!!}
+    fun getTrackListings(): List<Track> {
+        return trackList.map {it.value}
     }
 
     fun getTrack(id: Int): File {
-        if(id < 0 || id > musicList.size) throw FileNotFoundException()
-        return musicList[id].file
+        return trackList[id]?.resource?.file ?: throw FileNotFoundException()
     }
 
-    private fun getMusicList(): Array<Resource> {
+    fun hasTrack(id: Int): Boolean {
+        return trackList[id] != null
+    }
+
+    private fun makeTrackList(): HashMap<Int, Track> {
         var list = resourcePatternResolver.getResources("classpath:music/*/*.mp3")
         list += resourcePatternResolver.getResources("classpath:music/*.mp3")
-        return list
+        val newTrackList: HashMap<Int, Track> = HashMap()
+        list.mapIndexed {index, resource -> newTrackList.put(index, Track(resource, index))}
+        return newTrackList
     }
 }

@@ -1,5 +1,6 @@
 package com.benbasten.groupmusicserver.controller
 
+import com.benbasten.groupmusicserver.model.Track
 import com.benbasten.groupmusicserver.service.MusicService
 import com.benbasten.groupmusicserver.service.RoomService
 import org.springframework.http.HttpHeaders
@@ -24,13 +25,13 @@ class MusicController(private val musicService: MusicService, private val roomSe
     }
 
     @GetMapping("/tracks")
-    fun getMusicListings(): List<String> {
+    fun getMusicListings(): List<Track> {
         return musicService.getTrackListings()
     }
 
     @GetMapping("/room/now-playing")
-    fun getRoomNowPlaying(@RequestHeader("roomId") roomId: Int): ResponseEntity<StreamingResponseBody> {
-        val file: File = roomService.getCurrentTrackForRoom(roomId)
+    fun getRoomNowPlaying(@RequestParam("roomId") roomId: Int): ResponseEntity<StreamingResponseBody> {
+        val file: File = roomService.getCurrentTrackForRoom(roomId) ?: return ResponseEntity.noContent().build()
         val responseBody = StreamingResponseBody { outputStream: OutputStream -> Files.copy(file.toPath(), outputStream) }
         return ResponseEntity.ok()
             .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=${file.name}")
@@ -41,6 +42,11 @@ class MusicController(private val musicService: MusicService, private val roomSe
     @GetMapping("/room/queue")
     fun getRoomQueue(@RequestHeader("roomId") roomId: Int): List<String> {
         return roomService.getQueueForRoom(roomId)
+    }
+
+    @PostMapping("/room/queue/add")
+    fun addToQueue(@RequestBody trackId: Int, @RequestHeader("roomId") roomId: Int): Boolean {
+        return roomService.addToQueue(roomId, trackId)
     }
 
     @PostMapping("/create")

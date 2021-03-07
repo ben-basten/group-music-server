@@ -11,8 +11,7 @@ class Room {
     }
 
     fun getCurrentTrack(): Int? {
-//        return queue.firstOrNull()
-        return queue.first() // TODO: handle empty queue
+        return queue.firstOrNull()
     }
 
     fun addToQueue(trackId: Int) = queue.addLast(trackId)

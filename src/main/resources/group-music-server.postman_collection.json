@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "a57baeb8-5666-4190-94ad-4eedfd929ec0",
+		"name": "group-music-server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Room",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/gms/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"gms",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Now Playing",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"connection": true,
+					"accept-encoding": true,
+					"accept": true,
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/gms/room/now-playing?roomId=1234",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"gms",
+						"room",
+						"now-playing"
+					],
+					"query": [
+						{
+							"key": "roomId",
+							"value": "1234"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Track Listings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/gms/tracks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"gms",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add to Queue",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "roomId",
+						"value": "1234",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "0",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/gms/room/queue/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"gms",
+						"room",
+						"queue",
+						"add"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

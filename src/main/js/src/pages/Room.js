@@ -13,7 +13,6 @@ function Room(props) {
     const [queue, setQueue] = useState([]);
 
     const getMusicListings = () => {
-        console.log("called getMusicListings");
         fetch('/api/gms/tracks', {
             method: 'GET'
         })
@@ -39,31 +38,24 @@ function Room(props) {
     }
 
     useEffect(() => {
-        console.log("called useEffect");
         getMusicListings();
-        getQueue();
+        // getQueue(); //TODO: fix queue call
     }, [])
 
     return (
         <div className="room">
             <Header />
             <div className="room-content">
-                <div>
-                    <h3>Queue</h3>
-                    <MusicList music={queue} />
-                </div>
+                <MusicList name={"Queue"} music={queue} />
                 <div className="room-info">
                     <h2>Room {props.match.params.roomId}</h2>
                     <p>Share this link with your friends to join!</p>
                     <p>{window.location.href}</p>
-                    <audio controls src="/api/gms/room/now-playing">
+                    <audio controls src={`/api/gms/room/now-playing?roomId=${props.match.params.roomId}`}>
                         Your browser does not support the <code>audio</code> element.
                     </audio>
                 </div>
-                <div>
-                    <h3>Available Music</h3>
-                    <MusicList music={musicList} />
-                </div>
+                <MusicList name={"Available Music"} music={musicList} />
             </div>
         </div>
     );
