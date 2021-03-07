@@ -22,3 +22,7 @@ _Backend - Spring Boot_
 _Adding music_
 
 Put .mp3 music files into `src/main/resources/music`. The music can be in folders up to 2 directories deep.
+
+## Notes
+
+* mp3 metadata found using the mp3agic library. Documentation can be found [here](https://github.com/mpatric/mp3agic).

@@ -8,7 +8,7 @@ function MusicList({name, music}) {
             {music ? music.map(track => (
                 <li key={track.id} className="list-group-item">
                     {track.title} <br/>
-                    <small className="text-muted">{track.artist} / {track.album}</small><br/>
+                    <small className="text-muted">{track.artist} &middot; {track.album}</small><br/>
                     {/*<img src={QueueIcon} alt="Add to queue"/>*/}
                 </li>
             )) : <li>Nothing to see here... yet!</li>}

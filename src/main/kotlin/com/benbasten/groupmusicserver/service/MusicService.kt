@@ -24,6 +24,10 @@ class MusicService(private val resourcePatternResolver: ResourcePatternResolver)
         return trackList[id]?.resource?.file ?: throw FileNotFoundException()
     }
 
+    fun hasTrack(id: Int): Boolean {
+        return trackList[id] != null
+    }
+
     private fun makeTrackList(): HashMap<Int, Track> {
         var list = resourcePatternResolver.getResources("classpath:music/*/*.mp3")
         list += resourcePatternResolver.getResources("classpath:music/*.mp3")

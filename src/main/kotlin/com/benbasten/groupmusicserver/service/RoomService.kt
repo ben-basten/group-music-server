@@ -26,8 +26,15 @@ class RoomService(private val musicService: MusicService) {
         return listOf("Wildflowers", "Runnin' Down a Dream", "Honeybee")
     }
 
-    fun getCurrentTrackForRoom(roomId: Int): File {
-        val trackId = rooms[roomId]?.getCurrentTrack() ?: throw RoomNotFoundException()
-        return musicService.getTrack(trackId)
+    fun getCurrentTrackForRoom(roomId: Int): File? {
+        val room = rooms[roomId] ?: throw RoomNotFoundException()
+        if(room.getCurrentTrack() != null) return musicService.getTrack(room.getCurrentTrack()!!)
+        return null
+    }
+
+    fun addToQueue(roomId: Int, trackId: Int): Boolean {
+        if(!musicService.hasTrack(trackId)) return false
+        rooms[roomId]?.addToQueue(trackId) ?: throw RoomNotFoundException()
+        return true
     }
 }
