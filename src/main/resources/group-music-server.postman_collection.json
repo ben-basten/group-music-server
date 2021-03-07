@@ -66,11 +66,26 @@
 		},
 		{
 			"name": "Join Room",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "1234"
+				},
 				"url": {
-					"raw": "http://localhost:3000/api/gms/join/1234",
+					"raw": "http://localhost:3000/api/gms/join",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -79,8 +94,7 @@
 					"path": [
 						"api",
 						"gms",
-						"join",
-						"1234"
+						"join"
 					]
 				}
 			},

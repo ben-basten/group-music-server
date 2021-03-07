@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import API from '../utils/API';
 import Button from '../components/Button';
 
 function Join(props) {
@@ -6,25 +7,15 @@ function Join(props) {
     const [userInput, setUserInput] = useState("")
 
     const attemptJoin = () => {
-        fetch('/api/gms/join', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userInput)
-        })
-            .then(response => response.json())
+        API.joinRoom(userInput)
             .then(response => {
                 if(response.roomId) {
                     props.history.push({
-                        pathname: `/room/${response.roomId}`
-                        // state: { error: `Invalid Room ID: ${props.match.params.roomId}` }
+                        pathname: `/room/${response.roomId}`,
+                        state: { room: response }
                     });
                 }
             })
-            .catch(error => {
-                console.error("Something went wrong while adding a song to the queue.");
-            });
     }
 
     return (
