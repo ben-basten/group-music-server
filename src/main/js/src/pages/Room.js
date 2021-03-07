@@ -26,10 +26,9 @@ function Room(props) {
     const attemptJoin = () => {
         API.joinRoom(props.match.params.roomId)
             .then(response => {
-                console.log(response)
                 if(!response.roomId) {
                     // room doesn't exist, go to home page
-                    props.history.push({
+                    props.history.replace({
                         pathname: '/',
                         state: { error: `Invalid Room ID: ${props.match.params.roomId}` }
                     });
