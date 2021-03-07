@@ -5,20 +5,8 @@
     margin: 0;
   }
 
-  audio {
-    display: inline-block;
-    width: 80%;
+  .player {
     margin-top: 15px;
-  }
-
-  img.skip {
-    display: inline-block;
-    width: 1.3rem;
-    margin-bottom: 30px;
-    margin-left: 20px;
-
-    &:hover {
-      cursor: pointer;
-    }
+    width: 100%;
   }
 }

@@ -1,4 +1,5 @@
-import Skip from '../assets/icons/next.svg'
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
 
 function NowPlaying({track, roomId, setQueue}) {
 
@@ -24,12 +25,15 @@ function NowPlaying({track, roomId, setQueue}) {
             <p>{track && track.album}</p>
 
             {track ?
-                <>
-                    <audio controls src={`/api/gms/room/now-playing?roomId=${roomId}`}>
-                        Your browser does not support the <code>audio</code> element.
-                    </audio>
-                    <img src={Skip} alt="Skip button" className="skip" onClick={nextTrack} />
-                </>
+                <AudioPlayer
+                    autoPlay
+                    src={`/api/gms/room/now-playing?roomId=${roomId}`}
+                    showSkipControls={true}
+                    showJumpControls={false}
+                    onEnded={nextTrack}
+                    onClickNext={nextTrack}
+                    className="player"
+                />
             : null}
         </div>
     );
