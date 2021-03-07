@@ -1,6 +1,6 @@
 import QueueIcon from '../assets/icons/playlist.svg'
 
-function AvailableMusic({music, roomId}) {
+function AvailableMusic({music, roomId, setQueue}) {
 
     const addToQueue = (trackId) => {
         fetch('/api/gms/room/queue/add', {
@@ -12,6 +12,7 @@ function AvailableMusic({music, roomId}) {
             body: JSON.stringify(trackId)
         })
             .then(response => response.json())
+            .then(response => setQueue(response))
             .catch(error => {
                 console.error("Something went wrong while adding a song to the queue.");
             });

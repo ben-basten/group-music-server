@@ -46,7 +46,7 @@ class MusicController(private val musicService: MusicService, private val roomSe
     }
 
     @PostMapping("/room/queue/add")
-    fun addToQueue(@RequestBody trackId: Int, @RequestHeader("roomId") roomId: Int): Boolean {
+    fun addToQueue(@RequestBody trackId: Int, @RequestHeader("roomId") roomId: Int): List<Track> {
         return roomService.addToQueue(roomId, trackId)
     }
 
