@@ -16,7 +16,7 @@ function Lobby(props) {
                     });
                 }
             })
-            .catch(error => {
+            .catch(() => {
                 console.error("Something went wrong while creating a room.");
             });
     }
@@ -28,14 +28,15 @@ function Lobby(props) {
     }
 
     return (
-        <div className="lobby">
-            <h1>Lobby</h1>
-            <Button text="Create Room" action={createRoom} />
-            <Button text="Join Room" action={joinRoom} />
-
-            {props.location.state  &&
-                <div className="alert alert-warning" role="alert">{props.location.state.error}</div>
-            }
+        <div className="lobby card">
+            <div className="card-body">
+                <h1 className="card-title">Listening Party</h1>
+                <Button text="Create Room" action={createRoom} />
+                <Button text="Join Room" action={joinRoom} />
+                {props.location.state  &&
+                    <div className="alert alert-warning" role="alert">{props.location.state.error}</div>
+                }
+            </div>
         </div>
     );
 }

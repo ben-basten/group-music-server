@@ -19,10 +19,12 @@ function Join(props) {
     }
 
     return (
-        <div className="join">
-            <h1>Join</h1>
-            <input type="text" placeholder="Room ID" value={userInput} onChange={event => setUserInput(event.target.value)} />
-            <Button text={"Join now!"} action={attemptJoin} />
+        <div className="lobby card">
+            <div className="card-body">
+                <h1 className="card-title">Join</h1>
+                <input type="text" placeholder="Room ID" value={userInput} onChange={event => setUserInput(event.target.value)} />
+                <Button text={"Join now!"} action={attemptJoin} />
+            </div>
         </div>
     );
 }
