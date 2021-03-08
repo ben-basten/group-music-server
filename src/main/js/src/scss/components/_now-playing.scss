@@ -44,12 +44,7 @@
   }
 
   // removes previous track button
-  div.rhap_main-controls button:nth-child(1), .rhap_progress-indicator, .rhap_progress-container {
+  div.rhap_main-controls button:nth-child(1), .rhap_progress-indicator {
     display: none;
-  }
-
-  .rhap_progress-section {
-    display: flex;
-    justify-content: space-between;
   }
 }
