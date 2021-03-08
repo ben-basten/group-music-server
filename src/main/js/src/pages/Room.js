@@ -71,8 +71,12 @@ function Room(props) {
                 <Queue music={queue} />
                 <div className="room-details">
                     <h2>Room {props.match.params.roomId}</h2>
-                    <p className="info">Share this link with your friends to join!</p>
-                    <p className="info">{window.location.href}</p>
+                    <div className="card">
+                        <div className="card-body">
+                            <h5 className="card-title">{window.location.href}</h5>
+                            <h6 className="card-subtitle">Share this link for others to join the room!</h6>
+                        </div>
+                    </div>
                     <NowPlaying track={queue[0]} roomId={props.match.params.roomId} setQueue={setQueue} />
                 </div>
                 <AvailableMusic music={musicList} roomId={props.match.params.roomId} setQueue={setQueue} />

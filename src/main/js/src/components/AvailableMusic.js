@@ -20,7 +20,7 @@ function AvailableMusic({music, roomId, setQueue}) {
 
     return (
         <div className="music-list list-group">
-            <h3>Available Music</h3>
+            <h3 className="column-header">Available Music</h3>
             <ul>
             {music && music.length > 0 ? music.map(track => (
                 <li key={track.id} className="list-group-item">
