@@ -1,5 +1,22 @@
-.button {
-  input {
+.btn {
+  display: block;
+  margin: 5px;
+  width: 140px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: $secondary-green;
+  color: $dark-slate;
+  font-size: 1.2rem;
+  border: none;
 
+  &:hover {
+    background-color: $primary-green;
+    color: $dark-slate;
+    border: none;
+  }
+
+  &:focus {
+    background-color: $primary-green;
+    color: $dark-slate;
   }
 }

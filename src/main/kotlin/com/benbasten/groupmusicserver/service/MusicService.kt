@@ -29,7 +29,8 @@ class MusicService(private val resourcePatternResolver: ResourcePatternResolver)
     }
 
     private fun makeTrackList(): HashMap<Int, Track> {
-        var list = resourcePatternResolver.getResources("classpath:music/*/*.mp3")
+        var list = resourcePatternResolver.getResources("classpath:music/*/*/*.mp3")
+        list += resourcePatternResolver.getResources("classpath:music/*/*.mp3")
         list += resourcePatternResolver.getResources("classpath:music/*.mp3")
         val newTrackList: HashMap<Int, Track> = HashMap()
         list.mapIndexed {index, resource -> newTrackList.put(index, Track(index, resource))}

@@ -10,7 +10,37 @@
   }
 
   .player {
+    border-radius: 4px;
+    background-color: $dark-slate;
     margin-top: 15px;
     width: 100%;
+  }
+
+  .rhap_time, .rhap_volume-button {
+    color: $mute-grey;
+  }
+
+  .rhap_main-controls-button {
+    color: $primary-green;
+  }
+
+  .rhap_main-controls {
+    margin-left: 30px;
+  }
+
+  .rhap_repeat-button {
+    display: none;
+  }
+
+  .rhap_download-progress {
+    background-color: $mute-grey;
+  }
+
+  .rhap_progress-indicator, .rhap_volume-indicator {
+    background-color: $primary-green;
+  }
+
+  .rhap_progress-filled, .rhap_volume-bar {
+    background-color: $secondary-green;
   }
 }

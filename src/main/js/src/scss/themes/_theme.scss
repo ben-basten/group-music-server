@@ -1,6 +1,9 @@
 body {
     font-family: dubai, sans-serif;
+    color: $off-white;
+    background-color: $slate;
     overflow: hidden;
+    scrollbar-color: $primary-green $hover;
 
     @include for-narrow-displays {
         overflow: scroll;
@@ -9,9 +12,22 @@ body {
     .list-group-item {
         display: flex;
         justify-content: space-between;
+        background-color: $dark-slate;
 
-        &:hover {
-            background-color: lightgrey;
+        &:hover:not(.message) {
+            background-color: $hover;
         }
+    }
+
+    .card {
+        background-color: $dark-slate;
+    }
+
+    .card-subtitle {
+        color: $mute-grey;
+    }
+
+    .text-muted {
+        color: $mute-grey !important;
     }
 }
