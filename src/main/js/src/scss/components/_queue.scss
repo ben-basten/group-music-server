@@ -12,7 +12,7 @@
   .list-group-item {
     // highlights first item in the queue green unless it is the empty list message
     &:first-child:not(.message) {
-      background-color: lightgreen;
+      border-color: $primary-green;
     }
 
     // only the first list element gets the play icon
