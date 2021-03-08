@@ -18,7 +18,7 @@ function Room(props) {
         })
             .then(response => response.json())
             .then(response => setMusicList(response))
-            .catch(error => {
+            .catch(() => {
                 console.error("Something went wrong fetching the music listings.");
             });
     }
@@ -30,7 +30,7 @@ function Room(props) {
                     // room doesn't exist, go to home page
                     props.history.replace({
                         pathname: '/',
-                        state: { error: `Invalid Room ID: ${props.match.params.roomId}` }
+                        state: { error: 'Invalid room ID. Please create or join a different one.' }
                     });
                 } else {
                     setQueue(response.queue)
@@ -47,7 +47,7 @@ function Room(props) {
         })
             .then(response => response.json())
             .then(response => setQueue(response))
-            .catch(error => {
+            .catch(() => {
                 console.error("Something went wrong fetching the room queue.");
             });
     }

@@ -22,7 +22,7 @@ function Join(props) {
                             state: { room: response }
                         });
                     } else {
-                        setError("Invalid room ID.");
+                        setError(response.message);
                     }
                 })
         }
