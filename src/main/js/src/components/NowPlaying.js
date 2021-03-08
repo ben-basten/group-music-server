@@ -13,27 +13,32 @@ function NowPlaying({track, roomId, setQueue}) {
         })
             .then(response => response.json())
             .then(response => setQueue(response))
-            .catch(error => {
+            .catch(() => {
                 console.error("Something went wrong while going to the next track.");
             });
     }
 
     return (
         <div className="now-playing">
-            <h3>{track && track.title}</h3>
-            <p>{track && track.artist}</p>
-            <p>{track && track.album}</p>
-
             {track ?
-                <AudioPlayer
-                    autoPlay
-                    src={`/api/gms/room/now-playing?roomId=${roomId}`}
-                    showSkipControls={true}
-                    showJumpControls={false}
-                    onEnded={nextTrack}
-                    onClickNext={nextTrack}
-                    className="player"
-                />
+                <>
+                    <div className="card">
+                        <div className="card-body">
+                            <h4 className="card-title">{track.title}</h4>
+                            <h6 className="card-subtitle artist">{track.artist}</h6>
+                            <h6 className="card-subtitle album">{track.album}</h6>
+                        </div>
+                    </div>
+                    <AudioPlayer
+                        autoPlay
+                        src={`/api/gms/room/now-playing?roomId=${roomId}`}
+                        showSkipControls={true}
+                        showJumpControls={false}
+                        onEnded={nextTrack}
+                        onClickNext={nextTrack}
+                        className="player"
+                    />
+                </>
             : null}
         </div>
     );

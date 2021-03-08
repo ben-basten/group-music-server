@@ -3,6 +3,10 @@
     margin-top: auto;
     margin-bottom: auto;
     display: none;
+
+    &:hover {
+      cursor: default;
+    }
   }
 
   .list-group-item {
