@@ -25,7 +25,7 @@
   }
 
   .rhap_main-controls {
-    margin-left: 30px;
+    margin-left: 72px;
   }
 
   .rhap_repeat-button {
@@ -42,5 +42,10 @@
 
   .rhap_progress-filled, .rhap_volume-bar {
     background-color: $secondary-green;
+  }
+
+  // removes previous track button
+  div.rhap_main-controls button:nth-child(1) {
+    display: none;
   }
 }
