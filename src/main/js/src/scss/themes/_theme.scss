@@ -5,4 +5,13 @@ body {
     @include for-narrow-displays {
         overflow: scroll;
     }
+
+    .list-group-item {
+        display: flex;
+        justify-content: space-between;
+
+        &:hover {
+            background-color: lightgrey;
+        }
+    }
 }

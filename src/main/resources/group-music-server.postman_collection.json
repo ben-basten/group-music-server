@@ -101,6 +101,34 @@
 			"response": []
 		},
 		{
+			"name": "Next Track",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "roomId",
+						"value": "1234",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/gms/room/next-track",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"gms",
+						"room",
+						"next-track"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Hello",
 			"request": {
 				"method": "GET",
