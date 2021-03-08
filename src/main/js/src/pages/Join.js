@@ -18,8 +18,15 @@ function Join(props) {
             })
     }
 
+    const goToLobby = () => {
+        props.history.push({
+            pathname: '/'
+        });
+    }
+
     return (
         <div className="lobby card">
+            <a onClick={goToLobby}>&lt; back</a>
             <div className="card-body">
                 <h1 className="card-title">Join</h1>
                 <input type="text" placeholder="Room ID" value={userInput} onChange={event => setUserInput(event.target.value)} />

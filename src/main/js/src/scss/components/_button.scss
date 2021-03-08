@@ -14,4 +14,9 @@
     color: $dark-slate;
     border: none;
   }
+
+  &:focus {
+    background-color: $primary-green;
+    color: $dark-slate;
+  }
 }
