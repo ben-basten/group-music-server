@@ -36,6 +36,7 @@ class MusicController(private val musicService: MusicService, private val roomSe
         val responseBody = StreamingResponseBody { outputStream: OutputStream -> Files.copy(file.toPath(), outputStream) }
         return ResponseEntity.ok()
             .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=${file.name}")
+            .header("Cache-Control", "no-store")
             .contentType(MediaType.asMediaType(MimeType("audio", "mpeg")))
             .body(responseBody)
     }

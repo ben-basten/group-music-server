@@ -31,7 +31,7 @@ function NowPlaying({track, roomId, setQueue}) {
                     </div>
                     <AudioPlayer
                         autoPlay
-                        src={`/api/gms/room/now-playing?roomId=${roomId}`}
+                        src={`/api/gms/room/now-playing?roomId=${roomId}&trackId=${track.id}`} // add track id param to force refresh
                         showSkipControls={true}
                         showJumpControls={false}
                         onEnded={nextTrack}
