@@ -4,18 +4,28 @@ import Button from '../components/Button';
 
 function Join(props) {
 
-    const [userInput, setUserInput] = useState("")
+    const [userInput, setUserInput] = useState("");
+    const [error, setError] = useState("");
 
     const attemptJoin = () => {
-        API.joinRoom(userInput)
-            .then(response => {
-                if(response.roomId) {
-                    props.history.push({
-                        pathname: `/room/${response.roomId}`,
-                        state: { room: response }
-                    });
-                }
-            })
+        let reg = new RegExp('^\\d{4}$');
+        if(userInput === "") {
+            setError("Please enter an ID.");
+        } else if(!reg.test(userInput)) {
+            setError("ID must be a 4 digit number.");
+        } else {
+            API.joinRoom(userInput)
+                .then(response => {
+                    if(response.roomId) {
+                        props.history.push({
+                            pathname: `/room/${response.roomId}`,
+                            state: { room: response }
+                        });
+                    } else {
+                        setError(response.message);
+                    }
+                })
+        }
     }
 
     const goToLobby = () => {
@@ -24,13 +34,25 @@ function Join(props) {
         });
     }
 
+    const handleKeyDown = (e) => {
+        if(e.key === 'Enter') attemptJoin();
+    }
+
     return (
         <div className="lobby card">
             <a onClick={goToLobby}>&lt; back</a>
             <div className="card-body">
                 <h1 className="card-title">Join</h1>
-                <input type="text" placeholder="Room ID" value={userInput} onChange={event => setUserInput(event.target.value)} />
+                <input
+                    type="text"
+                    placeholder="4-Digit Room ID"
+                    maxLength={4}
+                    value={userInput}
+                    onKeyDown={handleKeyDown}
+                    onChange={event => setUserInput(event.target.value)}
+                />
                 <Button text={"Join now!"} action={attemptJoin} />
+                <p className={error ? "error" : "error hidden"}>{error ? error : "placeholder"}</p>
             </div>
         </div>
     );

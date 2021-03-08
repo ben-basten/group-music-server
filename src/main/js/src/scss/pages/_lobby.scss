@@ -36,4 +36,14 @@
   .alert {
     margin: 10px 0 0 0;
   }
+
+  .error {
+    font-size: .8rem;
+    margin-bottom: 0;
+    color: $error;
+
+    &.hidden {
+      visibility: hidden;
+    }
+  }
 }

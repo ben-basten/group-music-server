@@ -18,7 +18,7 @@ function Room(props) {
         })
             .then(response => response.json())
             .then(response => setMusicList(response))
-            .catch(error => {
+            .catch(() => {
                 console.error("Something went wrong fetching the music listings.");
             });
     }
@@ -30,7 +30,7 @@ function Room(props) {
                     // room doesn't exist, go to home page
                     props.history.replace({
                         pathname: '/',
-                        state: { error: `Invalid Room ID: ${props.match.params.roomId}` }
+                        state: { error: 'Invalid room ID. Please create or join a different one.' }
                     });
                 } else {
                     setQueue(response.queue)
@@ -47,7 +47,7 @@ function Room(props) {
         })
             .then(response => response.json())
             .then(response => setQueue(response))
-            .catch(error => {
+            .catch(() => {
                 console.error("Something went wrong fetching the room queue.");
             });
     }
@@ -71,8 +71,12 @@ function Room(props) {
                 <Queue music={queue} />
                 <div className="room-details">
                     <h2>Room {props.match.params.roomId}</h2>
-                    <p className="info">Share this link with your friends to join!</p>
-                    <p className="info">{window.location.href}</p>
+                    <div className="card">
+                        <div className="card-body">
+                            <h5 className="card-title">{window.location.href}</h5>
+                            <h6 className="card-subtitle">Share this link for others to join the room!</h6>
+                        </div>
+                    </div>
                     <NowPlaying track={queue[0]} roomId={props.match.params.roomId} setQueue={setQueue} />
                 </div>
                 <AvailableMusic music={musicList} roomId={props.match.params.roomId} setQueue={setQueue} />

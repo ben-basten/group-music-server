@@ -3,7 +3,7 @@ import PlayIcon from '../assets/icons/play.svg';
 function Queue({music}) {
     return (
         <div className="music-list list-group">
-            <h3>Queue</h3>
+            <h3 className="column-header">Queue</h3>
             <ul className="queue">
             {music && music.length > 0 ? music.map((track, index) => (
                 <li key={index * -1} className="list-group-item">

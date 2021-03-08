@@ -17,7 +17,9 @@ class Room(val roomId: Int) {
 
     fun getClientCount(): Int = clientCount
 
-    fun addToQueue(track: Track) = queue.addLast(track)
+    fun addToQueue(track: Track) {
+        if(queue.isEmpty() || queue.last().id != track.id) queue.addLast(track)
+    }
 
     fun getQueue(): List<Track> = queue.toList()
 

@@ -9,6 +9,11 @@ body {
         overflow: scroll;
     }
 
+    .list-group ul {
+        border-radius: 4px;
+        margin-top: 15px;
+    }
+
     .list-group-item {
         display: flex;
         justify-content: space-between;
@@ -19,8 +24,13 @@ body {
         }
     }
 
-    .card {
+    h3.column-header {
+        margin-top: 15px;
+    }
+
+    .card, .player {
         background-color: $dark-slate;
+        margin-top: 15px;
     }
 
     .card-subtitle {
