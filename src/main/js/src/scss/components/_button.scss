@@ -10,13 +10,13 @@
   border: none;
 
   &:hover {
-    background-color: $primary-green;
+    background-color: $primary-green !important;
     color: $dark-slate;
     border: none;
   }
 
   &:focus {
-    background-color: $primary-green;
+    background-color: $secondary-green;
     color: $dark-slate;
   }
 }
