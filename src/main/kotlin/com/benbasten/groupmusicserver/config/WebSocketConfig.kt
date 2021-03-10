@@ -22,6 +22,6 @@ class WebSocketConfig : WebSocketMessageBrokerConfigurer {
 
     override fun registerStompEndpoints(registry: StompEndpointRegistry) {
         // endpoint for the client to initially connect to the server
-        registry.addEndpoint("/api/gms/connect").setAllowedOrigins("*").withSockJS()
+        registry.addEndpoint("/api/gms/connect").withSockJS()
     }
 }

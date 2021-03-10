@@ -45,10 +45,13 @@ function Room(props) {
         let stompClient = Stomp.over(socket);
         stompClient.connect({}, function(frame) {
             console.log(`Connected: ${frame}`);
+            stompClient.subscribe('/topic/greetings', function(greeting) {
+               console.log("received greeting");
+               console.log(greeting);
+            });
+            stompClient.send("/api/gms/ws/hello", {}, JSON.stringify("hello world"));
         });
     }
-
-    connectToSocket();
 
     const getQueue= () => {
         fetch('/api/gms/room/queue', {
@@ -73,6 +76,7 @@ function Room(props) {
             attemptJoin();
         }
         getMusicListings();
+        connectToSocket();
     }, [])
 
     return (

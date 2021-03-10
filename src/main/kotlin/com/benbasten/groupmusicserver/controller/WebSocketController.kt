@@ -15,7 +15,6 @@ class WebSocketController {
     @SendTo("/topic/greetings") // outgoing endpoint that clients subscribe to - must have /topic prefix
     @Throws(Exception::class)
     fun greeting(message: String): String {
-        Thread.sleep(1000) // simulated delay
-        return "Is this working?"
+        return message
     }
 }
