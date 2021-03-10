@@ -8,6 +8,8 @@ import API from "../utils/API";
 
 function Room(props) {
     window.history.replaceState(null, '');
+    const Stomp = require('stompjs');
+    const SockJS = require('sockjs-client');
 
     const [musicList, setMusicList] = useState([]);
     const [queue, setQueue] = useState([]);
@@ -38,6 +40,16 @@ function Room(props) {
             });
     }
 
+    const connectToSocket = () => {
+        let socket = new SockJS('/api/gms/connect', null, { timeout: 5000 });
+        let stompClient = Stomp.over(socket);
+        stompClient.connect({}, function(frame) {
+            console.log(`Connected: ${frame}`);
+        });
+    }
+
+    connectToSocket();
+
     const getQueue= () => {
         fetch('/api/gms/room/queue', {
             method: 'GET',
@@ -61,7 +73,6 @@ function Room(props) {
             attemptJoin();
         }
         getMusicListings();
-        // getQueue();
     }, [])
 
     return (
