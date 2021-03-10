@@ -47,4 +47,8 @@
   div.rhap_main-controls button:nth-child(1), .rhap_progress-indicator {
     display: none;
   }
+
+  .rhap_progress-container {
+    cursor: default;
+  }
 }
