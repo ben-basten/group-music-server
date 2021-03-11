@@ -13,6 +13,7 @@ function Room(props) {
     const [musicList, setMusicList] = useState([]);
     const [queue, setQueue] = useState([]);
     const [client] = useState(new Client());
+    const [clientCount, setClientCount] = useState(1);
 
     const getMusicListings = () => {
         fetch('/api/gms/tracks', {
@@ -47,6 +48,15 @@ function Room(props) {
                 client.subscribe(`/topic/room/${props.match.params.roomId}/queue`, message => {
                     setQueue(JSON.parse(message.body));
                 })
+
+                client.subscribe(`/topic/room/${props.match.params.roomId}/client-count`, message => {
+                    setClientCount(JSON.parse(message.body));
+                })
+
+                // client.publish({destination: '/api/gms/ws/clients/add', body: props.match.params.roomId});
+            },
+            onDisconnect: () => {
+                client.publish({destination: '/api/gms/ws/clients/remove', body: props.match.params.roomId});
             },
             debug: str => {
                 console.log(new Date(), str);
@@ -79,6 +89,7 @@ function Room(props) {
                         <div className="card-body">
                             <h5 className="card-title">{window.location.href}</h5>
                             <h6 className="card-subtitle">Share this link for others to join the room!</h6>
+                            <h6 className="card-subtitle">Currently listening: <b>{clientCount}</b></h6>
                         </div>
                     </div>
                     <NowPlaying
