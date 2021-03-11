@@ -46,4 +46,9 @@
       visibility: hidden;
     }
   }
+
+  @include for-narrow-displays {
+    width: auto;
+    min-width: 290px;
+  }
 }
