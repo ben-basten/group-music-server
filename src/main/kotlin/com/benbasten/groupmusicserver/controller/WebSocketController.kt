@@ -12,6 +12,6 @@ class WebSocketController(private val simpMessagingTemplate: SimpMessagingTempla
 
     @MessageMapping("/queue/update")   // incoming endpoint that is prefixed by /api/gms/ws
     fun greeting(roomId: Int) {
-        simpMessagingTemplate.convertAndSend("/topic/queue", roomService.getQueueForRoom(roomId))
+        simpMessagingTemplate.convertAndSend("/topic/room/${roomId}/queue", roomService.getQueueForRoom(roomId))
     }
 }
