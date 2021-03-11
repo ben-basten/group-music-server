@@ -47,6 +47,12 @@ function Room(props) {
                 client.subscribe(`/topic/room/${props.match.params.roomId}/queue`, message => {
                     setQueue(JSON.parse(message.body));
                 })
+
+                client.subscribe(`/topic/room/is-playing`, message => {
+                    let isPlaying = JSON.parse(message.body);
+                    let mediaPlayer = document.getElementsByTagName("audio")[0];
+                    isPlaying ? mediaPlayer.play() : mediaPlayer.pause();
+                })
             },
             debug: str => {
                 console.log(new Date(), str);
@@ -66,7 +72,7 @@ function Room(props) {
         }
         getMusicListings();
         connectToSocket();
-    }, [])
+    }, []);
 
     return (
         <div className="room">

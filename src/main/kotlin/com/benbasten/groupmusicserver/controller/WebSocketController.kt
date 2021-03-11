@@ -14,4 +14,10 @@ class WebSocketController(private val simpMessagingTemplate: SimpMessagingTempla
     fun greeting(roomId: Int) {
         simpMessagingTemplate.convertAndSend("/topic/room/${roomId}/queue", roomService.getQueue(roomId))
     }
+
+    @MessageMapping("/now-playing/play-pause")   // incoming endpoint that is prefixed by /api/gms/ws
+    fun pause(isPlaying: Boolean) {
+        simpMessagingTemplate.convertAndSend("/topic/room/is-playing", isPlaying)
+//        simpMessagingTemplate.convertAndSend("/topic/room/${roomId}/is-playing", roomService.getQueue(roomId))
+    }
 }

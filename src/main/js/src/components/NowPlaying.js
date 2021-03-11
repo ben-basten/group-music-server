@@ -24,6 +24,13 @@ function NowPlaying({track, roomId, setQueue, socketClient}) {
             });
     }
 
+    const playPause = (isPlaying, event) => {
+        // don't do the actual playing/pausing of the client here - wait for the socket message to come
+        // this will reduce the amount that the client's audio streams are off
+        event.preventDefault();
+        socketClient.publish({destination: '/api/gms/ws/now-playing/play-pause', body: JSON.stringify(isPlaying)});
+    }
+
     return (
         <div className="now-playing">
             {track ?
@@ -42,6 +49,8 @@ function NowPlaying({track, roomId, setQueue, socketClient}) {
                         showJumpControls={false}
                         onEnded={nextTrack}
                         onClickNext={nextTrack}
+                        onPause={(event) => playPause(false, event)}
+                        onPlay={(event) => playPause(true, event)}
                         className="player"
                     />
                 </>
