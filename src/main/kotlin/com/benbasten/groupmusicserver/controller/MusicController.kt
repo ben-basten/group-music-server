@@ -4,15 +4,7 @@ import com.benbasten.groupmusicserver.model.Room
 import com.benbasten.groupmusicserver.model.Track
 import com.benbasten.groupmusicserver.service.MusicService
 import com.benbasten.groupmusicserver.service.RoomService
-import org.springframework.http.HttpHeaders
-import org.springframework.http.MediaType
-import org.springframework.http.ResponseEntity
-import org.springframework.util.MimeType
 import org.springframework.web.bind.annotation.*
-import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody
-import java.io.File
-import java.io.OutputStream
-import java.nio.file.Files
 import java.time.LocalDateTime
 
 

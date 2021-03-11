@@ -5,10 +5,6 @@ body {
     overflow: hidden;
     scrollbar-color: $primary-green $hover;
 
-    @include for-narrow-displays {
-        overflow: scroll;
-    }
-
     .list-group ul {
         border-radius: 4px;
         margin-top: 15px;
@@ -39,5 +35,18 @@ body {
 
     .text-muted {
         color: $mute-grey !important;
+    }
+
+    @include for-narrow-displays {
+        overflow: scroll;
+
+        .list-group ul {
+            padding-left: 0;
+        }
+
+        .list-group {
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
     }
 }

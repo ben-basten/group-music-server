@@ -19,4 +19,8 @@
     background-color: $secondary-green;
     color: $dark-slate;
   }
+
+  @include for-narrow-displays {
+    background-color: $primary-green;
+  }
 }

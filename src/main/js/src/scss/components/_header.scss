@@ -35,4 +35,14 @@ nav {
             border-bottom: 3px solid black;
         }
     }
+
+    @include for-narrow-displays {
+        .nav-link, .spacer {
+            display: none;
+        }
+
+        .title {
+            text-align: center;
+        }
+    }
 }

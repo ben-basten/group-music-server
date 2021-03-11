@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import AvailableMusic from '../components/AvailableMusic';
 import NowPlaying from '../components/NowPlaying';
 import Queue from '../components/Queue';
+import Button from '../components/Button';
 import API from "../utils/API";
 
 function Room(props) {
@@ -40,6 +41,12 @@ function Room(props) {
             });
     }
 
+    const goToLobby = () => {
+        props.history.push({
+            pathname: '/'
+        });
+    }
+
     const connectToSocket = () => {
         client.configure({
             brokerURL: 'ws://localhost:8080/api/gms/ws-connect',
@@ -73,7 +80,7 @@ function Room(props) {
             <Header />
             <div className="room-content">
                 <Queue music={queue} />
-                <div className="room-details">
+                <div className="room-details grid-item">
                     <h2>Room {props.match.params.roomId}</h2>
                     <div className="card">
                         <div className="card-body">
@@ -95,6 +102,11 @@ function Room(props) {
                     socketClient={client}
                 />
             </div>
+            <Button
+                text={"Go to lobby"}
+                action={goToLobby}
+                className="mobile-reveal"
+            />
         </div>
     );
 }

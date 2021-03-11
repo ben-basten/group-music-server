@@ -25,7 +25,7 @@ function AvailableMusic({music, roomId, setQueue, socketClient}) {
     }
 
     return (
-        <div className="music-list list-group">
+        <div className="music-list list-group grid-item">
             <h3 className="column-header">Available Music</h3>
             <ul>
             {music && music.length > 0 ? music.map(track => (
