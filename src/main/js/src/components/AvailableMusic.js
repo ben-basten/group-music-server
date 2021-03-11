@@ -1,6 +1,6 @@
 import QueueIcon from '../assets/icons/playlist.svg'
 
-function AvailableMusic({music, roomId, setQueue}) {
+function AvailableMusic({music, roomId, setQueue, socketClient}) {
 
     const addToQueue = (trackId) => {
         fetch('/api/gms/room/queue/add', {
@@ -12,8 +12,14 @@ function AvailableMusic({music, roomId, setQueue}) {
             body: JSON.stringify(trackId)
         })
             .then(response => response.json())
-            .then(response => setQueue(response))
-            .catch(error => {
+            .then(response => {
+                if(socketClient.connected) {
+                    socketClient.publish({destination: '/api/gms/ws/queue/update', body: roomId});
+                } else {
+                    setQueue(response);
+                }
+            })
+            .catch(() => {
                 console.error("Something went wrong while adding a song to the queue.");
             });
     }

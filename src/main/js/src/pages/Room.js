@@ -12,7 +12,7 @@ function Room(props) {
 
     const [musicList, setMusicList] = useState([]);
     const [queue, setQueue] = useState([]);
-    let client = new Client();
+    const [client] = useState(new Client());
 
     const getMusicListings = () => {
         fetch('/api/gms/tracks', {
@@ -35,26 +35,18 @@ function Room(props) {
                         state: { error: 'Invalid room ID. Please create or join a different one.' }
                     });
                 } else {
-                    setQueue(response.queue)
+                    setQueue(response.queue);
                 }
             });
     }
 
     const connectToSocket = () => {
-        // let client = new Client();
-
         client.configure({
             brokerURL: 'ws://localhost:8080/api/gms/ws-connect',
             onConnect: () => {
-                console.log("connected!");
-
-                client.subscribe('/topic/greetings', message => {
-                    console.log(JSON.parse(message.body));
+                client.subscribe('/topic/queue', message => {
+                    setQueue(JSON.parse(message.body));
                 })
-
-                setTimeout(function(){
-                    client.publish({destination: '/api/gms/ws/hello', body: props.match.params.roomId});
-                }, 2000);
             },
             debug: str => {
                 console.log(new Date(), str);
@@ -69,7 +61,7 @@ function Room(props) {
             // the user came here from the join page
             setQueue(props.location.state.room.queue);
         } else {
-            // the user navigated directly to the room page in the browser
+            // the user navigated directly to the room page in the browser or refreshed
             attemptJoin();
         }
         getMusicListings();
@@ -89,9 +81,19 @@ function Room(props) {
                             <h6 className="card-subtitle">Share this link for others to join the room!</h6>
                         </div>
                     </div>
-                    <NowPlaying track={queue[0]} roomId={props.match.params.roomId} setQueue={setQueue} />
+                    <NowPlaying
+                        track={queue[0]}
+                        roomId={props.match.params.roomId}
+                        setQueue={setQueue}
+                        socketClient={client}
+                    />
                 </div>
-                <AvailableMusic music={musicList} roomId={props.match.params.roomId} setQueue={setQueue} />
+                <AvailableMusic
+                    music={musicList}
+                    roomId={props.match.params.roomId}
+                    setQueue={setQueue}
+                    socketClient={client}
+                />
             </div>
         </div>
     );

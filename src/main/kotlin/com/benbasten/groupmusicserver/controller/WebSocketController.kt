@@ -10,8 +10,8 @@ import org.springframework.messaging.simp.SimpMessagingTemplate
 @Controller
 class WebSocketController(private val simpMessagingTemplate: SimpMessagingTemplate, private val roomService: RoomService) {
 
-    @MessageMapping("/hello")   // incoming endpoint that is prefixed by /api/gms/ws
+    @MessageMapping("/queue/update")   // incoming endpoint that is prefixed by /api/gms/ws
     fun greeting(roomId: Int) {
-        simpMessagingTemplate.convertAndSend("/topic/greetings", roomService.getQueueForRoom(roomId))
+        simpMessagingTemplate.convertAndSend("/topic/queue", roomService.getQueueForRoom(roomId))
     }
 }
