@@ -22,11 +22,11 @@ class RoomService(private val musicService: MusicService) {
         return rooms[id]!!
     }
 
-    fun getRoomInformation(roomId: Int): Room {
+    fun getRoom(roomId: Int): Room {
         return rooms[roomId] ?: throw RoomNotFoundException()
     }
 
-    fun getQueueForRoom(roomId: Int): List<Track> {
+    fun getQueue(roomId: Int): List<Track> {
         return rooms[roomId]?.getQueue() ?: throw RoomNotFoundException()
     }
 
@@ -36,7 +36,7 @@ class RoomService(private val musicService: MusicService) {
         return rooms[roomId]!!.getQueue()
     }
 
-    fun getCurrentTrackForRoom(roomId: Int): File? {
+    fun getCurrentTrack(roomId: Int): File? {
         val room = rooms[roomId] ?: throw RoomNotFoundException()
         if(room.getCurrentTrack() != null) return room.getCurrentTrack()
         return null

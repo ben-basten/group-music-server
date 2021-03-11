@@ -32,7 +32,7 @@ class MusicController(private val musicService: MusicService, private val roomSe
 
     @GetMapping("/room/now-playing")
     fun getRoomNowPlaying(@RequestParam("roomId") roomId: Int): ResponseEntity<StreamingResponseBody> {
-        val file: File = roomService.getCurrentTrackForRoom(roomId) ?: return ResponseEntity.noContent().build()
+        val file: File = roomService.getCurrentTrack(roomId) ?: return ResponseEntity.noContent().build()
         val responseBody = StreamingResponseBody { outputStream: OutputStream -> Files.copy(file.toPath(), outputStream) }
         return ResponseEntity.ok()
             .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=${file.name}")
@@ -43,7 +43,7 @@ class MusicController(private val musicService: MusicService, private val roomSe
 
     @GetMapping("/room/queue")
     fun getRoomQueue(@RequestHeader("roomId") roomId: Int): List<Track> {
-        return roomService.getQueueForRoom(roomId)
+        return roomService.getQueue(roomId)
     }
 
     @PostMapping("/room/queue/add")
@@ -63,6 +63,6 @@ class MusicController(private val musicService: MusicService, private val roomSe
 
     @PostMapping("/join")
     fun joinRoom(@RequestBody roomId: Int): Room {
-        return roomService.getRoomInformation(roomId)
+        return roomService.getRoom(roomId)
     }
 }
