@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { Client } from '@stomp/stompjs';
 import Header from '../components/Header';
 import AvailableMusic from '../components/AvailableMusic';
 import NowPlaying from '../components/NowPlaying';
@@ -11,6 +12,7 @@ function Room(props) {
 
     const [musicList, setMusicList] = useState([]);
     const [queue, setQueue] = useState([]);
+    const [client] = useState(new Client());
 
     const getMusicListings = () => {
         fetch('/api/gms/tracks', {
@@ -33,23 +35,25 @@ function Room(props) {
                         state: { error: 'Invalid room ID. Please create or join a different one.' }
                     });
                 } else {
-                    setQueue(response.queue)
+                    setQueue(response.queue);
                 }
             });
     }
 
-    const getQueue= () => {
-        fetch('/api/gms/room/queue', {
-            method: 'GET',
-            headers: {
-                'roomId': props.match.params.roomId
+    const connectToSocket = () => {
+        client.configure({
+            brokerURL: 'ws://localhost:8080/api/gms/ws-connect',
+            onConnect: () => {
+                client.subscribe(`/topic/room/${props.match.params.roomId}/queue`, message => {
+                    setQueue(JSON.parse(message.body));
+                })
+            },
+            debug: str => {
+                console.log(new Date(), str);
             }
-        })
-            .then(response => response.json())
-            .then(response => setQueue(response))
-            .catch(() => {
-                console.error("Something went wrong fetching the room queue.");
-            });
+        });
+
+        client.activate();
     }
 
     useEffect(() => {
@@ -57,11 +61,11 @@ function Room(props) {
             // the user came here from the join page
             setQueue(props.location.state.room.queue);
         } else {
-            // the user navigated directly to the room page in the browser
+            // the user navigated directly to the room page in the browser or refreshed
             attemptJoin();
         }
         getMusicListings();
-        // getQueue();
+        connectToSocket();
     }, [])
 
     return (
@@ -77,9 +81,19 @@ function Room(props) {
                             <h6 className="card-subtitle">Share this link for others to join the room!</h6>
                         </div>
                     </div>
-                    <NowPlaying track={queue[0]} roomId={props.match.params.roomId} setQueue={setQueue} />
+                    <NowPlaying
+                        track={queue[0]}
+                        roomId={props.match.params.roomId}
+                        setQueue={setQueue}
+                        socketClient={client}
+                    />
                 </div>
-                <AvailableMusic music={musicList} roomId={props.match.params.roomId} setQueue={setQueue} />
+                <AvailableMusic
+                    music={musicList}
+                    roomId={props.match.params.roomId}
+                    setQueue={setQueue}
+                    socketClient={client}
+                />
             </div>
         </div>
     );

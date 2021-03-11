@@ -1,7 +1,7 @@
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
-function NowPlaying({track, roomId, setQueue}) {
+function NowPlaying({track, roomId, setQueue, socketClient}) {
 
     const nextTrack = () => {
         fetch('/api/gms/room/next-track', {
@@ -12,7 +12,13 @@ function NowPlaying({track, roomId, setQueue}) {
             }
         })
             .then(response => response.json())
-            .then(response => setQueue(response))
+            .then(response => {
+                if(socketClient.connected) {
+                    socketClient.publish({destination: '/api/gms/ws/queue/update', body: roomId});
+                } else {
+                    setQueue(response);
+                }
+            })
             .catch(() => {
                 console.error("Something went wrong while going to the next track.");
             });
