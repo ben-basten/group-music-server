@@ -6,16 +6,14 @@ import kotlin.collections.ArrayDeque
 
 @JsonIgnoreProperties(value = ["currentTrack"])
 class Room(val roomId: Int) {
-    private var clientCount = 1
+    private var clientCount = 0
     private var queue: ArrayDeque<Track> = ArrayDeque()
 
-    fun addUserToRoom() = clientCount++
+    fun incrementClientCount(): Int = ++clientCount
 
     fun getCurrentTrack(): File? {
         return queue.firstOrNull()?.resource?.file
     }
-
-    fun getClientCount(): Int = clientCount
 
     fun addToQueue(track: Track) {
         if(queue.isEmpty() || queue.last().id != track.id) queue.addLast(track)

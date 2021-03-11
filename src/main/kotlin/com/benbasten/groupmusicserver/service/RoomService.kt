@@ -22,14 +22,16 @@ class RoomService(private val musicService: MusicService) {
         return rooms[id]!!
     }
 
-    fun getQueueForRoom(roomId: Int): List<Track> {
-        return rooms[roomId]?.getQueue() ?: throw RoomNotFoundException()
+    fun joinRoom(roomId: Int): Room {
+        return rooms[roomId] ?: throw RoomNotFoundException()
     }
 
-    fun getCurrentTrackForRoom(roomId: Int): File? {
-        val room = rooms[roomId] ?: throw RoomNotFoundException()
-        if(room.getCurrentTrack() != null) return room.getCurrentTrack()
-        return null
+    fun incrementClientsForRoom(roomId: Int): Int {
+        return rooms[roomId]?.incrementClientCount() ?: throw RoomNotFoundException()
+    }
+
+    fun getQueueForRoom(roomId: Int): List<Track> {
+        return rooms[roomId]?.getQueue() ?: throw RoomNotFoundException()
     }
 
     fun addToQueue(roomId: Int, trackId: Int): List<Track> {
@@ -38,9 +40,10 @@ class RoomService(private val musicService: MusicService) {
         return rooms[roomId]!!.getQueue()
     }
 
-    fun joinRoom(roomId: Int): Room {
-        rooms[roomId]?.addUserToRoom() ?: throw RoomNotFoundException()
-        return rooms[roomId]!!
+    fun getCurrentTrackForRoom(roomId: Int): File? {
+        val room = rooms[roomId] ?: throw RoomNotFoundException()
+        if(room.getCurrentTrack() != null) return room.getCurrentTrack()
+        return null
     }
 
     fun nextTrack(roomId: Int): List<Track> {

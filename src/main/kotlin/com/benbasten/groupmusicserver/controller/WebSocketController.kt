@@ -11,7 +11,17 @@ import org.springframework.messaging.simp.SimpMessagingTemplate
 class WebSocketController(private val simpMessagingTemplate: SimpMessagingTemplate, private val roomService: RoomService) {
 
     @MessageMapping("/queue/update")   // incoming endpoint that is prefixed by /api/gms/ws
-    fun greeting(roomId: Int) {
+    fun sendNewQueue(roomId: Int) {
         simpMessagingTemplate.convertAndSend("/topic/room/${roomId}/queue", roomService.getQueueForRoom(roomId))
+    }
+
+    @MessageMapping("/clients/add")   // incoming endpoint that is prefixed by /api/gms/ws
+    fun addClient(roomId: Int) {
+        simpMessagingTemplate.convertAndSend("/topic/room/${roomId}/client-count", roomService.incrementClientsForRoom(roomId))
+    }
+
+    @MessageMapping("/clients/remove")   // incoming endpoint that is prefixed by /api/gms/ws
+    fun removeClient(roomId: Int) {
+        simpMessagingTemplate.convertAndSend("/topic/room/${roomId}/client-count", roomService.incrementClientsForRoom(roomId))
     }
 }
