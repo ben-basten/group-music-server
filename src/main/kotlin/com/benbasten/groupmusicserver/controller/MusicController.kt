@@ -63,6 +63,6 @@ class MusicController(private val musicService: MusicService, private val roomSe
 
     @PostMapping("/join")
     fun joinRoom(@RequestBody roomId: Int): Room {
-        return roomService.joinRoom(roomId)
+        return roomService.getRoomInformation(roomId)
     }
 }
