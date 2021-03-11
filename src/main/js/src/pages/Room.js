@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { Client } from '@stomp/stompjs';
 import Header from '../components/Header';
 import AvailableMusic from '../components/AvailableMusic';
 import NowPlaying from '../components/NowPlaying';
@@ -8,11 +9,10 @@ import API from "../utils/API";
 
 function Room(props) {
     window.history.replaceState(null, '');
-    const Stomp = require('stompjs');
-    const SockJS = require('sockjs-client');
 
     const [musicList, setMusicList] = useState([]);
     const [queue, setQueue] = useState([]);
+    let client = new Client();
 
     const getMusicListings = () => {
         fetch('/api/gms/tracks', {
@@ -41,30 +41,27 @@ function Room(props) {
     }
 
     const connectToSocket = () => {
-        let socket = new SockJS('/api/gms/connect', null, { timeout: 5000 });
-        let stompClient = Stomp.over(socket);
-        stompClient.connect({}, function(frame) {
-            console.log(`Connected: ${frame}`);
-            stompClient.subscribe('/topic/greetings', function(greeting) {
-               console.log("received greeting");
-               console.log(greeting);
-            });
-            stompClient.send("/api/gms/ws/hello", {}, JSON.stringify("hello world"));
-        });
-    }
+        // let client = new Client();
 
-    const getQueue= () => {
-        fetch('/api/gms/room/queue', {
-            method: 'GET',
-            headers: {
-                'roomId': props.match.params.roomId
+        client.configure({
+            brokerURL: 'ws://localhost:8080/api/gms/ws-connect',
+            onConnect: () => {
+                console.log("connected!");
+
+                client.subscribe('/topic/greetings', message => {
+                    console.log(JSON.parse(message.body));
+                })
+
+                setTimeout(function(){
+                    client.publish({destination: '/api/gms/ws/hello', body: props.match.params.roomId});
+                }, 2000);
+            },
+            debug: str => {
+                console.log(new Date(), str);
             }
-        })
-            .then(response => response.json())
-            .then(response => setQueue(response))
-            .catch(() => {
-                console.error("Something went wrong fetching the room queue.");
-            });
+        });
+
+        client.activate();
     }
 
     useEffect(() => {

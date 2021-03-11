@@ -1,20 +1,17 @@
 package com.benbasten.groupmusicserver.controller
 
+import com.benbasten.groupmusicserver.service.RoomService
 import org.springframework.stereotype.Controller
 
-import org.springframework.messaging.handler.annotation.SendTo
-
 import org.springframework.messaging.handler.annotation.MessageMapping
-import java.lang.Exception
+import org.springframework.messaging.simp.SimpMessagingTemplate
 
 
 @Controller
-class WebSocketController {
+class WebSocketController(private val simpMessagingTemplate: SimpMessagingTemplate, private val roomService: RoomService) {
 
     @MessageMapping("/hello")   // incoming endpoint that is prefixed by /api/gms/ws
-    @SendTo("/topic/greetings") // outgoing endpoint that clients subscribe to - must have /topic prefix
-    @Throws(Exception::class)
-    fun greeting(message: String): String {
-        return message
+    fun greeting(roomId: Int) {
+        simpMessagingTemplate.convertAndSend("/topic/greetings", roomService.getQueueForRoom(roomId))
     }
 }

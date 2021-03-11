@@ -13,15 +13,15 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 @Configuration
 @EnableWebSocketMessageBroker
 class WebSocketConfig : WebSocketMessageBrokerConfigurer {
-    override fun configureMessageBroker(config: MessageBrokerRegistry) {
-        // prefix for outgoing messages
-        config.enableSimpleBroker("/topic")
-        // prefix for incoming messages with @MessageMapping annotation
-        config.setApplicationDestinationPrefixes("/api/gms/ws")
-    }
-
     override fun registerStompEndpoints(registry: StompEndpointRegistry) {
         // endpoint for the client to initially connect to the server
-        registry.addEndpoint("/api/gms/connect").withSockJS()
+        registry.addEndpoint("/api/gms/ws-connect").setAllowedOrigins("*")
+    }
+
+    override fun configureMessageBroker(config: MessageBrokerRegistry) {
+        // prefix for incoming messages with @MessageMapping annotation
+        config.setApplicationDestinationPrefixes("/api/gms/ws")
+        // prefix for outgoing messages
+        config.enableSimpleBroker("/topic")
     }
 }
