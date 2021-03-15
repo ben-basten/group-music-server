@@ -20,7 +20,7 @@
     color: $dark-slate;
   }
 
-  @include for-narrow-displays {
+  @include mobile-view {
     background-color: $primary-green;
   }
 }

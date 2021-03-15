@@ -37,7 +37,7 @@ body {
         color: $mute-grey !important;
     }
 
-    @include for-narrow-displays {
+    @include mobile-view {
         overflow: scroll;
 
         .list-group ul {

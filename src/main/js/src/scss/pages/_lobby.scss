@@ -47,7 +47,7 @@
     }
   }
 
-  @include for-narrow-displays {
+  @include mobile-view {
     width: auto;
     min-width: 290px;
   }

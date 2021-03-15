@@ -22,7 +22,7 @@
     }
   }
 
-  @include for-narrow-displays {
+  @include mobile-view {
     height: auto;
     max-height: 70vh;
   }

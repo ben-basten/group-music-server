@@ -36,7 +36,7 @@ nav {
         }
     }
 
-    @include for-narrow-displays {
+    @include mobile-view {
         .nav-link, .spacer {
             display: none;
         }

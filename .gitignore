@@ -36,6 +36,5 @@ out/
 ### VS Code ###
 .vscode/
 
-*.mp4
-*.mp3
+src/main/resources/music
 project-files
