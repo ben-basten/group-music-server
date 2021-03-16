@@ -6,6 +6,7 @@ import com.benbasten.groupmusicserver.service.RoomService
 import org.springframework.test.web.servlet.MockMvc
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import spock.lang.Specification
 
@@ -43,10 +44,33 @@ class MusicControllerSpec extends Specification {
         mockMvc
                 .perform(get("$prefix/tracks"))
                 .andExpect(status().isOk())
-                .andReturn().response
 
         then:
         1 * musicService.getTrackListings()
+        0 * _
+    }
+
+    def 'create room endpoint' () {
+        when:
+        mockMvc
+                .perform(post("$prefix/create"))
+                .andExpect(status().isOk())
+
+        then:
+        1 * roomService.createRoom()
+        0 * _
+    }
+
+    def 'join room endpoint' () {
+        when:
+        mockMvc
+                .perform(post("$prefix/join")
+                .content("12345")
+                .contentType("application/json"))
+                .andExpect(status().isOk())
+
+        then:
+        1 * roomService.getRoom(12345)
         0 * _
     }
 }
