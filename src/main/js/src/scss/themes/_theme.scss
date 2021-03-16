@@ -5,9 +5,24 @@ body {
     overflow: hidden;
     scrollbar-color: $primary-green $hover;
 
+    input {
+        text-align: center;
+        margin-bottom: 5px;
+        font-size: 1.2rem;
+        background-color: $off-white;
+        border: 2px solid transparent;
+        border-radius: 4px;
+        outline: none;
+
+        &:focus {
+            border: 2px solid $primary-green;
+        }
+    }
+
     .list-group ul {
         border-radius: 4px;
         margin-top: 15px;
+        padding-left: 0;
     }
 
     .list-group-item {
@@ -39,10 +54,6 @@ body {
 
     @include mobile-view {
         overflow: scroll;
-
-        .list-group ul {
-            padding-left: 0;
-        }
 
         .list-group {
             margin-top: 5px;
