@@ -10,7 +10,7 @@ import java.time.LocalDateTime
 
 @RestController
 @RequestMapping("/api/gms")
-class MusicController(private val musicService: MusicService, private val roomService: RoomService) {
+class MusicController(val musicService: MusicService, val roomService: RoomService) {
 
     @GetMapping("/hello")
     fun hello(): String {

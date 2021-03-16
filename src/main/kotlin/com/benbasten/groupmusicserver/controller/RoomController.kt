@@ -14,7 +14,7 @@ import java.nio.file.Files
 
 @RestController
 @RequestMapping("/api/gms/room")
-class RoomController(private val roomService: RoomService) {
+class RoomController(val roomService: RoomService) {
 
     @GetMapping("/now-playing")
     fun getRoomNowPlaying(@RequestParam("roomId") roomId: Int): ResponseEntity<StreamingResponseBody> {

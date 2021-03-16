@@ -7,10 +7,11 @@ import org.springframework.test.web.servlet.MockMvc
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header
 import spock.lang.Specification
 
 class MusicControllerSpec extends Specification {
+
+    private prefix = "/api/gms"
 
     private MusicController musicController
     private MusicService musicService = Mock()
@@ -22,10 +23,10 @@ class MusicControllerSpec extends Specification {
         mockMvc = standaloneSetup(musicController).build()
     }
 
-    def 'hello endpoint' () {
+    def 'get hello endpoint' () {
         when:
         def result = mockMvc
-                .perform(get("/api/gms/hello"))
+                .perform(get("$prefix/hello"))
                 .andExpect(status().isOk())
                 .andReturn().response
 
@@ -35,5 +36,17 @@ class MusicControllerSpec extends Specification {
 
         and:
         result.contentAsString.contains("howdy, today is")
+    }
+
+    def 'get music listings endpoint' () {
+        when:
+        mockMvc
+                .perform(get("$prefix/tracks"))
+                .andExpect(status().isOk())
+                .andReturn().response
+
+        then:
+        1 * musicService.getTrackListings()
+        0 * _
     }
 }
