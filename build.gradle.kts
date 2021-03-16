@@ -19,6 +19,7 @@ repositories {
 dependencies {
 	val spockVersion = "1.3-groovy-2.5"
 	val mp3agicVersion = "0.9.1"
+	val swaggerVersion = "2.9.2"
 	
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -32,10 +33,14 @@ dependencies {
 	// Reading mp3 metadata
 	implementation("com.mpatric:mp3agic:$mp3agicVersion")
 
-	//	Spock testing
+	// Spock testing
 	testImplementation("org.springframework.boot:spring-boot-starter-test") { exclude(group = "org.junit.vintage", module = "junit-vintage-engine") }
 	testImplementation("org.spockframework:spock-core:$spockVersion") { exclude(group = "org.codehaus.groovy") }
 	testImplementation("org.spockframework:spock-spring:$spockVersion")
+
+	// Swagger
+	implementation("io.springfox:springfox-swagger2:$swaggerVersion")
+	implementation("io.springfox:springfox-swagger-ui:$swaggerVersion")
 }
 
 tasks.withType<KotlinCompile> {
