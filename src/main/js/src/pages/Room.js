@@ -49,7 +49,7 @@ function Room(props) {
 
     const connectToSocket = () => {
         client.configure({
-            brokerURL: 'ws://localhost:8080/api/gms/ws-connect',
+            brokerURL: `ws://${window.location.host}/api/gms/ws-connect`,
             onConnect: () => {
                 client.subscribe(`/topic/room/${props.match.params.roomId}/queue`, message => {
                     setQueue(JSON.parse(message.body));
