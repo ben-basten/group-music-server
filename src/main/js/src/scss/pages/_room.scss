@@ -2,8 +2,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 
-    @include for-narrow-displays {
+    @include mobile-view {
         grid-template-columns: 1fr;
+        .grid-item:nth-child(1) { order: 2; }
+        .grid-item:nth-child(2) { order: 1; }
+        .grid-item:nth-child(3) { order: 3; }
     }
 }
 

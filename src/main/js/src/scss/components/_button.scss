@@ -19,4 +19,8 @@
     background-color: $secondary-green;
     color: $dark-slate;
   }
+
+  @include mobile-view {
+    background-color: $primary-green;
+  }
 }

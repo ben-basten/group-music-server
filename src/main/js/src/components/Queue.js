@@ -2,7 +2,7 @@ import PlayIcon from '../assets/icons/play.svg';
 
 function Queue({music}) {
     return (
-        <div className="music-list list-group">
+        <div className="music-list list-group grid-item">
             <h3 className="column-header">Queue</h3>
             <ul className="queue">
             {music && music.length > 0 ? music.map((track, index) => (

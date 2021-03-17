@@ -5,13 +5,29 @@ body {
     overflow: hidden;
     scrollbar-color: $primary-green $hover;
 
-    @include for-narrow-displays {
-        overflow: scroll;
+    input {
+        text-align: center;
+        margin-bottom: 5px;
+        font-size: 1.2rem;
+        background-color: $dark-slate;
+        border: 2px solid $mute-grey;
+        color: $off-white;
+        border-radius: 4px;
+        outline: none;
+
+        &::placeholder {
+            color: $off-white;
+        }
+
+        &:focus {
+            border: 2px solid $primary-green;
+        }
     }
 
     .list-group ul {
         border-radius: 4px;
         margin-top: 15px;
+        padding-left: 0;
     }
 
     .list-group-item {
@@ -39,5 +55,14 @@ body {
 
     .text-muted {
         color: $mute-grey !important;
+    }
+
+    @include mobile-view {
+        overflow: scroll;
+
+        .list-group {
+            margin-top: 5px;
+            margin-bottom: 0;
+        }
     }
 }
