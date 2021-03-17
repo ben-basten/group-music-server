@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import QueueIcon from '../assets/icons/playlist.svg'
+import QueueIcon from '../assets/icons/playlist.svg';
 
 function AvailableMusic({music, roomId, setQueue, socketClient}) {
 
@@ -52,7 +52,11 @@ function AvailableMusic({music, roomId, setQueue, socketClient}) {
                         </div>
                         <img src={QueueIcon} alt="Add to queue" onClick={() => addToQueue(track.id)} />
                     </li>
-            )) : null}
+            )) :
+                <div className="spinner-border text-success spinner" role="status">
+                    <span className="sr-only">Loading...</span>
+                </div>
+            }
             </ul>
         </div>
     );
