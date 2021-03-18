@@ -12,5 +12,5 @@
 }
 
 @mixin wide-view {
-  @media (max-height: 685px) { @content; }
+  @media (max-height: 650px) { @content; }
 }

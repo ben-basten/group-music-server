@@ -5,7 +5,6 @@ import Header from '../components/Header';
 import AvailableMusic from '../components/AvailableMusic';
 import NowPlaying from '../components/NowPlaying';
 import Queue from '../components/Queue';
-import Button from '../components/Button';
 import API from "../utils/API";
 
 function Room(props) {
@@ -39,12 +38,6 @@ function Room(props) {
                     setQueue(response.queue);
                 }
             });
-    }
-
-    const goToLobby = () => {
-        props.history.push({
-            pathname: '/'
-        });
     }
 
     const connectToSocket = () => {
@@ -102,11 +95,6 @@ function Room(props) {
                     socketClient={client}
                 />
             </div>
-            <Button
-                text={"Go to lobby"}
-                action={goToLobby}
-                className="mobile-reveal"
-            />
         </div>
     );
 }
