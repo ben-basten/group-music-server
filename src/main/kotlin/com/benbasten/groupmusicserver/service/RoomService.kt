@@ -13,7 +13,7 @@ class RoomService(private val musicService: MusicService) {
     var rooms: HashMap<Int, Room> = HashMap()
 
     fun createRoom(): Room {
-        if(rooms.size > 5) throw TooManyRoomsException()
+        if(rooms.size > 25) throw TooManyRoomsException()
         var id: Int
         do {
             id = Room.generateRoomId()

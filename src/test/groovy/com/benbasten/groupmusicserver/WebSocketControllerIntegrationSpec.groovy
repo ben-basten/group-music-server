@@ -31,7 +31,7 @@ class WebSocketControllerIntegrationSpec extends Specification {
     }
 
     // reference: https://evojam.com/technology-blog/2020/5/18/the-secret-of-painless-websocket-tests-with-spock-framework
-    def "socket opens"() {
+    def "websocket connection successfully opens"() {
         when:
         def socket = openSocket()
 
