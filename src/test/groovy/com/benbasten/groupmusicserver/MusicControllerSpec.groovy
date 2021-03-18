@@ -65,12 +65,12 @@ class MusicControllerSpec extends Specification {
         when:
         mockMvc
                 .perform(post("$prefix/join")
-                .content("12345")
+                .content("1234")
                 .contentType("application/json"))
                 .andExpect(status().isOk())
 
         then:
-        1 * roomService.getRoom(12345)
+        1 * roomService.getRoom(1234)
         0 * _
     }
 }
