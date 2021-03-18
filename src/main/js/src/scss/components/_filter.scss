@@ -1,0 +1,17 @@
+.filter {
+  position: relative;
+
+  input {
+    margin-top: 15px;
+    width: 100%;
+  }
+
+  a.ui-button {
+    font-weight: bold;
+    font-size: 1.3rem;
+    padding: 2px 8px 2px 8px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+}

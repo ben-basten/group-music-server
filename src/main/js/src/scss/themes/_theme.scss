@@ -57,6 +57,16 @@ body {
         color: $mute-grey !important;
     }
 
+    a.ui-button {
+        color: $mute-grey;
+        width: auto;
+
+        &:hover {
+            cursor: pointer;
+            text-decoration: none;
+        }
+    }
+
     @include mobile-view {
         overflow: scroll;
 

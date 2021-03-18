@@ -46,7 +46,7 @@ function Join(props) {
 
     return (
         <div className="lobby card">
-            <a onClick={goToLobby}>&lt; back</a>
+            <a onClick={goToLobby} className="ui-button">&lt; back</a>
             <div className="card-body">
                 <h1 className="card-title">Join</h1>
                 <input
