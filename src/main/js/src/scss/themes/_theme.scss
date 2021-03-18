@@ -57,6 +57,16 @@ body {
         color: $mute-grey !important;
     }
 
+    a.ui-button {
+        color: $mute-grey;
+        width: auto;
+
+        &:hover {
+            cursor: pointer;
+            text-decoration: none;
+        }
+    }
+
     @include mobile-view {
         overflow: scroll;
 
@@ -64,5 +74,10 @@ body {
             margin-top: 5px;
             margin-bottom: 0;
         }
+    }
+
+    @include wide-view {
+        overflow: scroll;
+        overflow-x: hidden;
     }
 }

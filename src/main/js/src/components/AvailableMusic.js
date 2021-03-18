@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import QueueIcon from '../assets/icons/playlist.svg';
+import Filter from "./Filter";
 
 function AvailableMusic({music, roomId, setQueue, socketClient}) {
 
@@ -30,13 +31,7 @@ function AvailableMusic({music, roomId, setQueue, socketClient}) {
     return (
         <div className="music-list list-group grid-item">
             <h3 className="column-header">Available Music</h3>
-            <input
-                type="text"
-                className="filter"
-                placeholder="Filter music"
-                value={filterInput || ''}
-                onChange={event => setFilterInput(event.target.value)}
-            />
+            <Filter filterInput={filterInput} setFilterInput={setFilterInput} />
             <ul>
             {music && music.length > 0 ? music
                 .filter(track => // filters the song titles/artists/albums by the user inputted filter

@@ -10,3 +10,7 @@
 @mixin mobile-view {
   @media (max-width: 850px) { @content; }
 }
+
+@mixin wide-view {
+  @media (max-height: 650px) { @content; }
+}

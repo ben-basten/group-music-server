@@ -20,6 +20,7 @@ dependencies {
 	val spockVersion = "1.3-groovy-2.5"
 	val mp3agicVersion = "0.9.1"
 	val swaggerVersion = "2.9.2"
+	val nvVersion = "2.8"
 	
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -41,6 +42,9 @@ dependencies {
 	// Swagger
 	implementation("io.springfox:springfox-swagger2:$swaggerVersion")
 	implementation("io.springfox:springfox-swagger-ui:$swaggerVersion")
+
+	// Websocket test client
+	testImplementation("com.neovisionaries:nv-websocket-client:$nvVersion")
 }
 
 tasks.withType<KotlinCompile> {

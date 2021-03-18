@@ -1,17 +1,19 @@
 nav {
     background-color: $primary-green;
     padding: 10px 30px 10px 30px;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 10px;
-    grid-auto-flow: column;
-    height: auto;
-    justify-content: center;
+    display: flex;
+    justify-content: space-between;
 
     span.spacer {
         font-weight: bold;
         color: $slate;
         font-size: 1.9rem;
+    }
+
+    .nav-link, .spacer {
+        display: inline-block;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
     .nav-link, .title {
@@ -25,6 +27,7 @@ nav {
 
     .title {
         font-size: 2rem;
+        width: auto;
     }
 
     a.nav-link {
@@ -43,6 +46,7 @@ nav {
 
         .title {
             text-align: center;
+            margin: auto;
         }
     }
 }
