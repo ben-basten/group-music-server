@@ -65,4 +65,9 @@ body {
             margin-bottom: 0;
         }
     }
+
+    @include wide-view {
+        overflow: scroll;
+        overflow-x: hidden;
+    }
 }
