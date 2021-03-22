@@ -12,16 +12,6 @@
     overflow-x: hidden;
   }
 
-  img { // add to queue button
-    padding: 0 10px 0 10px;
-    width: 2.5rem;
-    border-radius: 10px;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
   div.spinner {
     display: block;
     margin-left: auto;
