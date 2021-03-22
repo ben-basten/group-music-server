@@ -33,7 +33,7 @@ function Track({track, roomId, setQueue, socketClient}) {
     }
 
     return (
-        <li key={track.id} className="list-group-item track">
+        <li className="list-group-item track">
             <div>
                 {track.title} <br/>
                 <small className="text-muted">{track.artist} &middot; {track.album}</small><br/>

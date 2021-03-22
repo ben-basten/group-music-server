@@ -19,6 +19,7 @@ function TrackList({music, roomId, setQueue, socketClient}) {
                     || track.album.toLowerCase().indexOf(filterInput.toLowerCase()) > -1)
                 .map(track => (
                     <Track
+                        key={track.id}
                         track={track}
                         roomId={roomId}
                         setQueue={setQueue}
