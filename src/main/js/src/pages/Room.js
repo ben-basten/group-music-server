@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Client } from '@stomp/stompjs';
 import Header from '../components/Header';
-import AvailableMusic from '../components/AvailableMusic';
+import TrackList from '../components/TrackList';
 import NowPlaying from '../components/NowPlaying';
 import Queue from '../components/Queue';
 import API from "../utils/API";
@@ -88,7 +88,7 @@ function Room(props) {
                         socketClient={client}
                     />
                 </div>
-                <AvailableMusic
+                <TrackList
                     music={musicList}
                     roomId={props.match.params.roomId}
                     setQueue={setQueue}
