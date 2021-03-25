@@ -6,233 +6,245 @@
 	},
 	"item": [
 		{
-			"name": "Add to Queue",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "roomId",
-						"value": "1234",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "0",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "music-controller",
+			"item": [
+				{
+					"name": "Hello",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/gms/hello",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"gms",
+								"hello"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:3000/api/gms/room/queue/add",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"gms",
-						"room",
-						"queue",
-						"add"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Room",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/gms/create",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"gms",
-						"create"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Join Room",
-			"protocolProfileBehavior": {
-				"disabledSystemHeaders": {
-					"content-type": true
-				}
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "1234"
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/gms/join",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"gms",
-						"join"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Next Track",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "roomId",
-						"value": "1234",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:3000/api/gms/room/next-track",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"gms",
-						"room",
-						"next-track"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Hello",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/gms/hello",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"gms",
-						"hello"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "All Track Listings",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/gms/tracks",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"gms",
-						"tracks"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Now Playing",
-			"protocolProfileBehavior": {
-				"disabledSystemHeaders": {
-					"connection": true,
-					"accept-encoding": true,
-					"accept": true,
-					"user-agent": true
-				}
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/gms/room/now-playing?roomId=1234",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"gms",
-						"room",
-						"now-playing"
-					],
-					"query": [
-						{
-							"key": "roomId",
-							"value": "1234"
+				{
+					"name": "All Track Listings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/gms/tracks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"gms",
+								"tracks"
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "Join Room",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "1234"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/gms/join",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"gms",
+								"join"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Room",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/gms/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"gms",
+								"create"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Get Queue",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "roomId",
-						"value": "7313",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:3000/api/gms/room/queue",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"gms",
-						"room",
-						"queue"
-					]
+			"name": "room-controller",
+			"item": [
+				{
+					"name": "Add to Queue",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "roomId",
+								"value": "1234",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "0",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/gms/room/queue/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"gms",
+								"room",
+								"queue",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Next Track",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "roomId",
+								"value": "1234",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/gms/room/next-track",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"gms",
+								"room",
+								"next-track"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Now Playing",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/gms/room/now-playing?roomId=1590",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"gms",
+								"room",
+								"now-playing"
+							],
+							"query": [
+								{
+									"key": "roomId",
+									"value": "1590"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Queue",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "roomId",
+								"value": "7313",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/gms/room/queue",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"gms",
+								"room",
+								"queue"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	]
 }
