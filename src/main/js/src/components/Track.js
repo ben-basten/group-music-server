@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import AddIcon from "../assets/icons/playlist.svg";
 import SuccessIcon from "../assets/icons/added.svg";
+import PlayIcon from "../assets/icons/play.svg";
 
 function Track({track, roomId, setQueue, socketClient}) {
 
@@ -20,7 +21,7 @@ function Track({track, roomId, setQueue, socketClient}) {
                 setShowSuccess(true);
                 setTimeout(function(){
                     setShowSuccess(false);
-                }, 3000);
+                }, 1000);
                 if(socketClient.connected) {
                     socketClient.publish({destination: '/api/gms/ws/queue/update', body: roomId});
                 } else {
@@ -38,12 +39,19 @@ function Track({track, roomId, setQueue, socketClient}) {
                 {track.title} <br/>
                 <small className="text-muted">{track.artist} &middot; {track.album}</small><br/>
             </div>
-            <img
-                src={showSuccess ? SuccessIcon : AddIcon}
-                alt="Add to queue"
-                className="button"
-                onClick={() => addToQueue(track.id)}
-            />
+            { setQueue ? // track list - add to queue button
+                <img
+                    src={showSuccess ? SuccessIcon : AddIcon}
+                    alt="Add to queue"
+                    className="button"
+                    onClick={() => addToQueue(track.id)}
+                />
+                : // queue - decorative icons
+                <>
+                    <small className="text-muted tip">Up next</small>
+                    <img src={PlayIcon} alt="Play icon" />
+                </>
+            }
         </li>
     );
 }
