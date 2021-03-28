@@ -14,15 +14,10 @@ function Room(props) {
     const [queue, setQueue] = useState([]);
     const [client] = useState(new Client());
 
-    const getMusicListings = () => {
-        fetch('/api/gms/tracks', {
+    const getMusicListings = async () => {
+        return fetch('/api/gms/tracks', {
             method: 'GET'
-        })
-            .then(response => response.json())
-            .then(response => setMusicList(response))
-            .catch(() => {
-                console.error("Something went wrong fetching the music listings.");
-            });
+        });
     }
 
     const attemptJoin = () => {
@@ -57,6 +52,7 @@ function Room(props) {
     }
 
     useEffect(() => {
+        // Step 1: figure out where the user came from
         if(props.location.state && props.location.state.room) {
             // the user came here from the join page
             setQueue(props.location.state.room.queue);
@@ -64,7 +60,15 @@ function Room(props) {
             // the user navigated directly to the room page in the browser or refreshed
             attemptJoin();
         }
-        getMusicListings();
+
+        // Step 2: asynchronously get the available music listings
+        getMusicListings().then(response => response.json())
+            .then(response => setMusicList(response))
+            .catch(() => {
+                console.error("Something went wrong fetching the music listings.");
+            });
+
+        // Step 3: connect to the WebSocket to make the room responsive!
         connectToSocket();
     }, [])
 
