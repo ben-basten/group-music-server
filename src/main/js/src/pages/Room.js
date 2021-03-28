@@ -62,7 +62,8 @@ function Room(props) {
         }
 
         // Step 2: asynchronously get the available music listings
-        getMusicListings().then(response => response.json())
+        getMusicListings()
+            .then(response => response.json())
             .then(response => setMusicList(response))
             .catch(() => {
                 console.error("Something went wrong fetching the music listings.");
@@ -70,7 +71,7 @@ function Room(props) {
 
         // Step 3: connect to the WebSocket to make the room responsive!
         connectToSocket();
-    }, [])
+    }, []);
 
     return (
         <div className="room">
