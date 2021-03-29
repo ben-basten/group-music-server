@@ -21,8 +21,7 @@ class RoomController(val roomService: RoomService) {
         val file: File = roomService.getCurrentTrack(roomId) ?: return ResponseEntity.noContent().build()
         val responseBody = StreamingResponseBody { outputStream: OutputStream -> Files.copy(file.toPath(), outputStream) }
         return ResponseEntity.ok()
-            .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=${file.name}")
-            .header("Cache-Control", "no-store")
+            .header(HttpHeaders.CONTENT_DISPOSITION, "inline")
             .contentType(MediaType.asMediaType(MimeType("audio", "mpeg")))
             .body(responseBody)
     }
