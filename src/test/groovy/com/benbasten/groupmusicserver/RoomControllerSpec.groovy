@@ -45,14 +45,12 @@ class RoomControllerSpec extends Specification {
             .perform(get("$prefix/now-playing")
                 .param("roomId", "1415"))
             .andExpect(status().isOk())
-            .andExpect(header().string("cache-control", "no-store"))
             .andExpect(header().string("content-type", "audio/mpeg"))
-            .andExpect(header().string("content-disposition", "inline; filename=song.mp3"))
+            .andExpect(header().string("content-disposition", "inline"))
 
         then:
         1 * roomService.getCurrentTrack(1415) >> testFile
         1 * testFile.toPath()
-        1 * testFile.getName() >> "song.mp3"
         0 * _
     }
 

@@ -29,17 +29,17 @@ class MusicService(private val resourcePatternResolver: ResourcePatternResolver)
     }
 
     private fun makeTrackList(): HashMap<Int, Track> {
-        var list: Array<Resource> = emptyArray()
+        var resources: Array<Resource> = emptyArray()
         try {
-            list = resourcePatternResolver.getResources("classpath:music/*/*/*.mp3")
-            list += resourcePatternResolver.getResources("classpath:music/*/*.mp3")
-            list += resourcePatternResolver.getResources("classpath:music/*.mp3")
+            resources = resourcePatternResolver.getResources("classpath:music/*/*/*.mp3")
+            resources += resourcePatternResolver.getResources("classpath:music/*/*.mp3")
+            resources += resourcePatternResolver.getResources("classpath:music/*.mp3")
         } catch (ex: IllegalStateException) {
             System.err.println("An error occurred getting the mp3 resources: ${ex.message}")
             System.err.println(ex.stackTrace)
         }
-        val newTrackList: HashMap<Int, Track> = HashMap()
-        list.mapIndexed {index, resource -> newTrackList.put(index, Track(index, resource))}
-        return newTrackList
+        val tracks: HashMap<Int, Track> = HashMap()
+        resources.mapIndexed { index, resource -> tracks.put(index, Track(index, resource))}
+        return tracks
     }
 }
