@@ -17,8 +17,9 @@ ___
 
 **Running Backend - Spring Boot**
 
-* _First time only:_ In the root directory, run the command `gradle clean build`. This will install all necessary dependencies and run unit/integration tests.
-* `gradle :bootRun` - starts the Spring Boot server. After compiling is done, the server will be listening on port 8080.
+* _First time only:_ In the root directory, run the command `./gradlew clean build`. This will install all necessary dependencies and run unit/integration tests.
+    * Linux users: you may have to add execute permissions to the `gradlew` file for this to work. Run the command `chmod +x gradlew` if you are having problems.
+* `./gradlew :bootRun` - starts the Spring Boot server. After compiling is done, the server will be listening on port 8080.
 * Assuming that the frontend is already running, all requests to port 3000 will be proxied to port 8080 by React. Test that the frontend and backend are running as expected by navigating to [localhost:3000/api/gms/hello](http://localhost:8080/api/gms/hello) in your browser or Postman. You should see a simple "hello" message with the current date and time.
 
 ___
