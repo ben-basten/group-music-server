@@ -36,8 +36,14 @@ function Room(props) {
     }
 
     const connectToSocket = () => {
+        let websocketUrl;
+        if(window.location.host.includes(":3000")) { // Development
+            websocketUrl = `ws://${window.location.hostname}:8080/api/gms/ws-connect`;
+        } else { // Production
+            websocketUrl = `ws://${window.location.hostname}/api/gms/ws-connect`;
+        }
         client.configure({
-            brokerURL: `ws://${window.location.hostname}:8080/api/gms/ws-connect`,
+            brokerURL: websocketUrl,
             onConnect: () => {
                 client.subscribe(`/topic/room/${props.match.params.roomId}/queue`, message => {
                     setQueue(JSON.parse(message.body));
