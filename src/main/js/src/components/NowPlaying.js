@@ -1,7 +1,7 @@
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
-function NowPlaying({track, roomId, setQueue, socketClient}) {
+function NowPlaying({track, roomId, setQueue, socketClient, history}) {
 
     const nextTrack = () => {
         fetch('/api/gms/room/next-track', {

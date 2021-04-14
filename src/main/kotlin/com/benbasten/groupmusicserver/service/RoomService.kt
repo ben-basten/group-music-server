@@ -6,6 +6,8 @@ import com.benbasten.groupmusicserver.model.Room
 import com.benbasten.groupmusicserver.model.Track
 import org.springframework.stereotype.Component
 import java.io.File
+import java.util.*
+import kotlin.collections.HashMap
 
 @Component
 class RoomService(private val musicService: MusicService) {
@@ -23,6 +25,7 @@ class RoomService(private val musicService: MusicService) {
     }
 
     fun getRoom(roomId: Int): Room {
+        rooms[roomId]?.updateTimestamp()
         return rooms[roomId] ?: throw RoomNotFoundException()
     }
 
@@ -32,8 +35,8 @@ class RoomService(private val musicService: MusicService) {
 
     fun addToQueue(roomId: Int, trackId: Int): List<Track> {
         if(!musicService.hasTrack(trackId)) return rooms[roomId]?.getQueue() ?: throw RoomNotFoundException()
-        rooms[roomId]?.addToQueue(musicService.getTrack(trackId)!!) ?: throw RoomNotFoundException()
-        return rooms[roomId]!!.getQueue()
+        rooms[roomId]?.addToQueue(musicService.getTrack(trackId)!!)
+        return rooms[roomId]?.getQueue() ?: throw RoomNotFoundException()
     }
 
     fun getCurrentTrack(roomId: Int): File? {
@@ -45,5 +48,16 @@ class RoomService(private val musicService: MusicService) {
     fun nextTrack(roomId: Int): List<Track> {
         rooms[roomId]?.popQueue() ?: throw RoomNotFoundException()
         return rooms[roomId]!!.getQueue()
+    }
+
+    fun removeUnusedRooms() {
+        val now = Date()
+        println("older than 1 minute")
+        for(room in rooms) {
+            if(now.time - room.value.lastAccessed.time > (60 * 1000)) {
+                println(room.key)
+                // rooms.remove(room.key)
+            }
+        }
     }
 }

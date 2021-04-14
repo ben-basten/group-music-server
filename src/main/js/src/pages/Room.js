@@ -97,6 +97,7 @@ function Room(props) {
                         roomId={props.match.params.roomId}
                         setQueue={setQueue}
                         socketClient={client}
+                        history={props.history}
                     />
                 </div>
                 <TrackList
