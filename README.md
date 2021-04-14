@@ -10,7 +10,7 @@ This is my senior project at NMU for the CS480 course.
 
 **Running Frontend - React**
 
-* Navigate into the src/main/js folder and run the command `npm install`.
+* Navigate into the `src/main/js` folder and run the command `npm install`.
 * `npm start` - runs the React frontend. Navigate to [localhost:3000](http://localhost:3000) to see it.
 
 ___
@@ -38,6 +38,49 @@ ___
 Once Spring Boot is running, the auto-generated interactive API documentation can be viewed at [localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html).
 
 If you prefer to use Postman instead, a Postman collection is available here: `src/main/resources/group-music-server.postman_collection.json`
+
+## Production Build
+
+**Frontend - React**
+
+Running the React development server is not secure in a production environment, so setup is a little different to create a prod build.
+
+1. Navigate into the `src/main/js` folder and execute the command `npm run build`. This will generate a static version of your React app with minified and hashed files for security and "aggressive caching".
+2. Your production page will now be located in `src/main/js/build`. If any changes are made to the code base, make sure to run the build command again to re-generate the files in the build folder.
+3. A static web server will be needed to serve this content. The server needs to support proxying WebSockets and HTTP requests to get the full functionality of the project. 
+    * Resources for setting up an Apache server on Linux:
+        * [Changing Document Root](https://askubuntu.com/questions/337874/change-apache-document-root-folder-to-secondary-hard-drive) - make sure to set it to the path for your build folder
+        * [Proxying API calls to different port](https://www.digitalocean.com/community/tutorials/how-to-use-apache-as-a-reverse-proxy-with-mod_proxy-on-ubuntu-16-04)
+            
+                # Proxying api calls
+                ProxyPreserveHost On
+                ProxyPass /api/gms http://127.0.0.1:8080/api/gms
+                ProxyPassReverse /api/gms http://127.0.0.1:8080/api/gms
+        
+        * [Proxying WebSockets to different port](https://stackoverflow.com/questions/27526281/websockets-and-apache-proxy-how-to-configure-mod-proxy-wstunnel)
+
+                # Proxying websocket - looking for upgrade request in header
+                RewriteEngine On
+                RewriteCond %{HTTP:Upgrade} =websocket [NC]
+                RewriteRule /(.*)           ws://127.0.0.1:8080/$1 [P,L]
+
+        * [Default to using React's routing rather than Apache](https://stackoverflow.com/questions/44038456/how-to-setup-apache-server-for-react-route)
+
+                # Allow React to handle the routing
+                RewriteEngine On
+                RewriteCond %{REQUEST_FILENAME} -f [OR]
+                RewriteCond %{REQUEST_FILENAME} -d
+                RewriteRule ^ - [L]
+                RewriteRule ^ index.html [L]
+
+---
+
+**Backend - Spring Boot**
+
+Run the Spring Boot server as you would for development. The static web server will handle proxying to port 8080.
+
+1. `./gradlew clean build` - make sure that all dependencies are all installed and tests are passing
+2.  `./gradlew :bootRun` - runs the server on port 8080
 
 ## Technologies Used
 
