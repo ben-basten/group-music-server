@@ -73,4 +73,15 @@ class MusicControllerSpec extends Specification {
         1 * roomService.getRoom(1234)
         0 * _
     }
+
+    def 'get rooms list endpoint' () {
+        when:
+        mockMvc
+                .perform(get("$prefix/rooms"))
+                .andExpect(status().isOk())
+
+        then:
+        1 * roomService.getRoomIdList()
+        0 * _
+    }
 }

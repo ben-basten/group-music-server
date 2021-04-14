@@ -51,6 +51,27 @@
 					"response": []
 				},
 				{
+					"name": "Room ID List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/gms/rooms",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"gms",
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Join Room",
 					"protocolProfileBehavior": {
 						"disabledSystemHeaders": {
@@ -194,7 +215,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/gms/room/now-playing?roomId=1590",
+							"raw": "http://localhost:3000/api/gms/room/now-playing?roomId=1234",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -209,7 +230,7 @@
 							"query": [
 								{
 									"key": "roomId",
-									"value": "1590"
+									"value": "1234"
 								}
 							]
 						}
@@ -223,7 +244,7 @@
 						"header": [
 							{
 								"key": "roomId",
-								"value": "7313",
+								"value": "1234",
 								"type": "text"
 							}
 						],

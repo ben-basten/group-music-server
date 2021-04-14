@@ -12,8 +12,11 @@ class Room(val roomId: Int) {
         return queue.firstOrNull()?.resource?.file
     }
 
-    fun addToQueue(track: Track) {
-        if(queue.isEmpty() || queue.last().id != track.id) queue.addLast(track)
+    fun addToQueue(track: Track?) {
+        // cannot add the same track twice to prevent caching in the frontend
+        if(track != null && (queue.isEmpty() || queue.last().id != track.id)) {
+            queue.addLast(track)
+        }
     }
 
     fun getQueue(): List<Track> = queue.toList()

@@ -22,6 +22,11 @@ class MusicController(val musicService: MusicService, val roomService: RoomServi
         return musicService.getTrackListings()
     }
 
+    @GetMapping("/rooms")
+    fun getRoomsList(): List<Int> {
+        return roomService.getRoomIdList()
+    }
+
     @PostMapping("/create")
     fun createRoom(): Room {
         return roomService.createRoom()

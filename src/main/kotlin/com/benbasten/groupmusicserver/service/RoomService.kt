@@ -13,7 +13,7 @@ class RoomService(private val musicService: MusicService) {
     var rooms: HashMap<Int, Room> = HashMap()
 
     fun createRoom(): Room {
-        if(rooms.size > 25) throw TooManyRoomsException()
+        if(rooms.size > 35) throw TooManyRoomsException()
         var id: Int
         do {
             id = Room.generateRoomId()
@@ -26,14 +26,18 @@ class RoomService(private val musicService: MusicService) {
         return rooms[roomId] ?: throw RoomNotFoundException()
     }
 
+    fun getRoomIdList(): List<Int> {
+        return rooms.map { it.key }
+    }
+
     fun getQueue(roomId: Int): List<Track> {
         return rooms[roomId]?.getQueue() ?: throw RoomNotFoundException()
     }
 
     fun addToQueue(roomId: Int, trackId: Int): List<Track> {
         if(!musicService.hasTrack(trackId)) return rooms[roomId]?.getQueue() ?: throw RoomNotFoundException()
-        rooms[roomId]?.addToQueue(musicService.getTrack(trackId)!!)
-        return rooms[roomId]!!.getQueue()
+        rooms[roomId]?.addToQueue(musicService.getTrack(trackId))
+        return rooms[roomId]?.getQueue() ?: throw RoomNotFoundException()
     }
 
     fun getCurrentTrack(roomId: Int): File? {
@@ -43,7 +47,7 @@ class RoomService(private val musicService: MusicService) {
     }
 
     fun nextTrack(roomId: Int): List<Track> {
-        rooms[roomId]?.popQueue() ?: throw RoomNotFoundException()
-        return rooms[roomId]!!.getQueue()
+        rooms[roomId]?.popQueue()
+        return rooms[roomId]?.getQueue() ?: throw RoomNotFoundException()
     }
 }
