@@ -13,15 +13,12 @@ This is my senior project at NMU for the CS480 course.
 * Navigate into the `src/main/js` folder and run the command `npm install`.
 * `npm start` - runs the React frontend. Navigate to [localhost:3000](http://localhost:3000) to see it.
 
-___
-
 **Running Backend - Spring Boot**
 
 * _First time only:_ In the root directory, run the command `./gradlew clean build`. This will install all necessary dependencies and run unit/integration tests.
+  * Note: on Windows, the equivalent command is `gradlew :bootRun`
 * `./gradlew :bootRun` - starts the Spring Boot server. After compiling is done, the server will be listening on port 8080.
 * Assuming that the frontend is already running, all requests to port 3000 will be proxied to port 8080 by React. Test that the frontend and backend are running as expected by navigating to [localhost:3000/api/gms/hello](http://localhost:8080/api/gms/hello) in your browser or Postman. You should see a simple "hello" message with the current date and time.
-
-___
 
 **Adding music**
 
@@ -31,15 +28,13 @@ Put .mp3 music files into `src/main/resources/music`. The tracks are indexed dur
 2. `music/folder1/song.mp3`
 3. `music/folder1/folder2/song.mp3`
 
-___
-
 **Swagger Interactive Documentation**
 
 Once Spring Boot is running, the auto-generated interactive API documentation can be viewed at [localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html).
 
 If you prefer to use Postman instead, a Postman collection is available here: `src/main/resources/group-music-server.postman_collection.json`
 
-## Production Build
+## Run in Production
 
 **Frontend - React**
 
@@ -72,8 +67,6 @@ Running the React development server is not secure in a production environment, 
                 RewriteCond %{REQUEST_FILENAME} -d
                 RewriteRule ^ - [L]
                 RewriteRule ^ index.html [L]
-
----
 
 **Backend - Spring Boot**
 
