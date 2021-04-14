@@ -32,7 +32,7 @@ class RoomService(private val musicService: MusicService) {
 
     fun addToQueue(roomId: Int, trackId: Int): List<Track> {
         if(!musicService.hasTrack(trackId)) return rooms[roomId]?.getQueue() ?: throw RoomNotFoundException()
-        rooms[roomId]?.addToQueue(musicService.getTrack(trackId)!!)
+        rooms[roomId]?.addToQueue(musicService.getTrack(trackId)!!) ?: throw RoomNotFoundException()
         return rooms[roomId]!!.getQueue()
     }
 
