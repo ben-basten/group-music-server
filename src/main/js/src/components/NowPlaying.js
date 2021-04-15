@@ -1,5 +1,6 @@
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
+import { useEffect, useState } from "react";
 
 function NowPlaying({track, roomId, setQueue, socketClient}) {
 
@@ -30,6 +31,7 @@ function NowPlaying({track, roomId, setQueue, socketClient}) {
                 <>
                     <div className="card">
                         <div className="card-body">
+                            <img src={`data:image/jpeg;base64,${track.art}`} className="album-art" alt="album art" />
                             <h4 className="card-title">{track.title}</h4>
                             <h6 className="card-subtitle artist">{track.artist}</h6>
                             <h6 className="card-subtitle album">{track.album}</h6>

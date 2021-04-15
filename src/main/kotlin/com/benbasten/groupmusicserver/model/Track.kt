@@ -11,6 +11,7 @@ class Track(val id: Int, var resource: Resource) {
     val title: String = getTrackTitle()
     val artist: String = getTrackArtist()
     val album: String = getTrackAlbum()
+    val art: ByteArray? = getAlbumArt()
 
     private fun getTrackTitle(): String {
         return try {
@@ -34,6 +35,14 @@ class Track(val id: Int, var resource: Resource) {
             mp3File.id3v2Tag.album
         } catch (ex: NullPointerException) {
             "Unknown album"
+        }
+    }
+
+    private fun getAlbumArt(): ByteArray? {
+        return try {
+            mp3File.id3v2Tag.albumImage
+        } catch (ex: NullPointerException) {
+            null
         }
     }
 }
