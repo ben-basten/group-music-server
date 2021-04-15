@@ -17,7 +17,9 @@ class MusicService(private val resourcePatternResolver: ResourcePatternResolver)
     fun hello() = "hello"
 
     fun getTrackListings(): List<Track> {
-        return trackList.map {it.value}
+        return trackList
+            .map { it.value }
+            .sortedBy { it.title }
     }
 
     fun getTrack(id: Int): Track? {
