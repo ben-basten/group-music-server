@@ -15,7 +15,7 @@ body {
         border-radius: 4px;
         outline: none;
 
-        &::placeholder, ::-webkit-input-placeholder, ::-moz-placeholder {
+        &::placeholder, &::-webkit-input-placeholder, &::-moz-placeholder {
             color: $off-white;
         }
 
