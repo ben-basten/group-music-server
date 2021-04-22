@@ -12,6 +12,7 @@ This is my senior project at NMU for the CS480 course.
 
 * Navigate into the `src/main/js` folder and run the command `npm install`.
 * `npm start` - runs the React frontend. Navigate to [localhost:3000](http://localhost:3000) to see it.
+    * _Note: Safari may not allow auto-playing media by default, which is critical to the functionality of the music player. To enable on desktop, navigate to `Safari > Preferences... > Websites > Auto-Play`, and switch the project to "Allow All Auto-Play"_
 
 **Running Backend - Spring Boot**
 
