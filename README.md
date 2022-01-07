@@ -84,11 +84,18 @@ Run the Spring Boot server as you would for development. The static web server w
 
 ## Screenshots
 
-![Lobby Screenshot](https://github.com/ben-basten/group-music-server/blob/test/screenshots/src/main/resources/screenshots/lobby.PNG?raw=true)
+![Lobby Screenshot](https://github.com/ben-basten/group-music-server/blob/develop/src/main/resources/screenshots/lobby.PNG?raw=true)
+
 _Welcome page and lobby for joining listening rooms_
 
-![Listening Room UI Screenshot](https://github.com/ben-basten/group-music-server/blob/test/screenshots/src/main/resources/screenshots/room-ui.png?raw=true)
+---
+
+![Listening Room UI Screenshot](https://github.com/ben-basten/group-music-server/blob/develop/src/main/resources/screenshots/room-ui.png?raw=true)
+
 _The listening room, where users can play/pause, skip songs, and add to queue_
 
-![Mobile UI Screenshot](https://github.com/ben-basten/group-music-server/blob/test/screenshots/src/main/resources/screenshots/mobile.png?raw=true)
+---
+
+![Mobile UI Screenshot](https://github.com/ben-basten/group-music-server/blob/develop/src/main/resources/screenshots/mobile.png?raw=true)
+
 _The group music server also supports mobile listening_
